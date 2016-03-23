@@ -1,0 +1,59 @@
+<%= form_for([@user,@debt], url: { action: action } ) do |f| %>
+<% if @debt.errors.any? %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h2><%= pluralize(@debt.errors.count, "error") %> prohibited this debt from being saved:</h2>
+    <ul>
+    <% @debt.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <%= notice %>
+</div>
+<script type="text/javascript">
+  $( document ).ready(function()
+  {
+    $('.field_with_errors').css ("display","block");
+    $('.field_with_errors').css ("background-color","#eee");
+    $('.field_with_errors').css ("border-radius","3px");
+  });
+</script>
+<% end %>
+
+<div class="col-lg-6">
+  <div class="well bs-component">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend></legend>
+
+        <div class="form-group">
+          <%= f.label :title, class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.text_field :title, class:'form-control', placeholder: :title, required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :amount, class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.text_field :amount, class:'form-control', placeholder: :amount, required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :owner, class:'col-lg-2 control-label'  %>
+          <div class="col-lg-10">
+            <%= f.select :owner_id, @users, {}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= link_to :cancel, user_debts_path, class:"btn btn-default" %>
+            <button type="submit" class="btn btn-primary"><%= :submit %></button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<% end %>

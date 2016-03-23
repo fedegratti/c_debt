@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'starjedi';
+    src: url('/assets/starjedi.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'satellite';
+    src: url('/assets/Satellite.otf') format('truetype');
+}
+
+h3.user_name {
+  font-family: satellite !important;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.noMargin {
+    margin: 0px;
+}
+.noPadding {
+  padding: 0px;
+}
+.floatLeft {
+    float: left;
+    margin-right: 8px;
+}
+

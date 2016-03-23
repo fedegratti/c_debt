@@ -1,0 +1,8 @@
+h1.homeText {
+    font-size: 55px;
+}
+.div-center {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
