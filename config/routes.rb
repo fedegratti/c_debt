@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :debts
   end
 
-
+  get 'users/:user_id/debts/:id/pay' => 'debts#pay'
+  get 'users/:user_id/purchases/:id/pay' => 'purchases#pay'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

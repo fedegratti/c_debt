@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   # GET /users
   def index
-    @debts = Debt.where owner_id: current_user.id
+    @debts = Debt.where owner_id: current_user.id, paid: false
   end
 
   private

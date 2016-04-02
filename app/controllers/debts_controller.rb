@@ -1,11 +1,11 @@
 class DebtsController < ApplicationController
-  before_action :set_debt, only: [:show, :edit, :update, :destroy]
+  before_action :set_debt, only: [:show, :edit, :update, :pay, :destroy]
   before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :set_user, only: [:index, :edit, :create]
 
   # GET /debts
   def index
-    @debts = @user.debts
+    @debts = Debt.where user_id: current_user.id, paid: false
   end
 
   # GET /debts/1
@@ -26,11 +26,11 @@ class DebtsController < ApplicationController
     @debt = Debt.new(debt_params)
     @debt.user_id = params.require :user_id
 
-      if @debt.save
-        redirect_to user_debts_path(params.require :user_id), notice: 'Debt was successfully created.'
-      else
-        render :new
-      end
+    if @debt.save
+      redirect_to user_debts_path(params.require :user_id), notice: 'Debt was successfully created.'
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /debts/1
@@ -40,6 +40,14 @@ class DebtsController < ApplicationController
       else
         render :edit
       end
+  end
+
+  # GET /debts/1/pay
+  def pay
+    @debt.paid = true
+    if @debt.save
+        redirect_to user_debts_url, notice: 'Debt was marked as paid.'
+    end
   end
 
   # DELETE /debts/1

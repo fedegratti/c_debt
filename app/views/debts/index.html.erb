@@ -19,7 +19,7 @@
           <th><%= t('amount') %></th>
           <th><%= t('debt owner') %></th>
           <th><%= t('issue_date') %></th>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
         </tr>
       </thead>
 
@@ -30,6 +30,7 @@
             <td><%= debt.amount %></td>
             <td><%= debt.owner.name %></td>
             <td><%= debt.created_at.strftime("%d/%m/%Y %H:%M hs") %></td>
+            <td><%= link_to 'Mark as paid', pay_user_debt_path(debt) %></td>
             <td><%= link_to 'Edit', edit_user_debt_path(@user,debt) %></td>
             <td><%= link_to 'Destroy', user_debt_path(@user,debt), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>

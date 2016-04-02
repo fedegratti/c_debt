@@ -1,12 +1,12 @@
 class PurchasesController < ApplicationController
-  before_action :set_purchase, only: [:show, :edit, :update, :destroy]
+  before_action :set_purchase, only: [:show, :edit, :update, :pay, :destroy]
   before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :set_user, only: [:index, :edit, :create]
   before_action :clean_select_multiple_params, only: [:create]
 
   # GET /purchases
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.where user_id: current_user.id, paid: false
   end
 
   # GET /purchases/1
@@ -25,6 +25,7 @@ class PurchasesController < ApplicationController
   # POST /purchases
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.user_id = params.require :user_id
 
     if @purchase.save
       @to_users = (params.require :purchase)[:user]
@@ -36,7 +37,6 @@ class PurchasesController < ApplicationController
         @debt.title = (params.require :purchase)[:name]
         @debt.amount = ((Float((params.require :purchase)[:amount]) / (@to_users.size + 1))).ceil
 
-        #@debt.owner_id = params.require :owner_id
         @debt.owner_id = Integer (user_id)
         @debt.purchase_id = @purchase.id
         @debt.save
@@ -55,6 +55,18 @@ class PurchasesController < ApplicationController
       else
         render :edit
       end
+  end
+
+  # GET /debts/1/pay
+  def pay
+    @purchase.paid = true
+    if @purchase.save
+      @purchase.debts.each do |debt|
+        debt.paid = true
+        debt.save
+      end
+      redirect_to user_purchases_url, notice: 'Purchase was marked as paid.'
+    end
   end
 
   # DELETE /purchases/1

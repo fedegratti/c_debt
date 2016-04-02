@@ -16,7 +16,7 @@
         <tr>
           <th><%= t('name') %></th>
           <th><%= t('amount') %></th>
-          <th colspan="2"></th>
+          <th colspan="3"></th>
         </tr>
       </thead>
 
@@ -25,6 +25,7 @@
           <tr>
             <td><%= purchase.name %></td>
             <td><%= purchase.amount %></td>
+            <td><%= link_to 'Mark as paid', pay_user_purchase_path(purchase) %></td>
             <td><%= link_to 'Edit', edit_user_purchase_path(@user,purchase) %></td>
             <td><%= link_to 'Destroy', user_purchase_path(@user,purchase), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
