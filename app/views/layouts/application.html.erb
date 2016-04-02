@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>E-Debt system</title>
+      <title>C-Debt system</title>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
       <%= csrf_meta_tags %>
@@ -20,15 +20,15 @@
         </div>
         <div class="navbar-collapse collapse navbar-warning-collapse">
             <ul class="nav navbar-nav">
+            <% if current_user != nil %>
                 <li>
-                    <% if current_user != nil %>
-                        <%= link_to t('Your debts'), user_debts_path(current_user.id) %>
-                    <% end %>
+                    <%= link_to t('Your debts'), user_debts_path(current_user.id) %>
                 </li>
                 <li>
-                  <%= #link_to t('people'), people_path
-                  %>
+                    <%= link_to t('Your purchases'), user_purchases_path(current_user.id) %>
                 </li>
+            <% end %>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

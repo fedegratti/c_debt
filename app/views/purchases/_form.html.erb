@@ -1,0 +1,63 @@
+<%= form_for([@user,@purchase], url: { action: action }) do |f| %>
+<% if @purchase.errors.any? %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+    <ul>
+    <% @purchase.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <%= notice %>
+</div>
+<script type="text/javascript">
+  $( document ).ready(function()
+  {
+    $('.field_with_errors').css ("display","block");
+    $('.field_with_errors').css ("background-color","#eee");
+    $('.field_with_errors').css ("border-radius","3px");
+  });
+</script>
+<% end %>
+
+<div class="col-lg-6">
+  <div class="well bs-component">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend></legend>
+
+          <div class="form-group">
+            <%= f.label :name, class:'col-lg-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :name, class:'form-control', placeholder: :name, required: true %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :amount, class:'col-lg-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.number_field :amount, class:'form-control', placeholder: :amount, required: true %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :users, class:'col-lg-2 control-label'  %>
+            <div class="col-lg-10">
+              <%= f.select(
+                  "user",
+                  @users,
+                  {},
+                  {multiple: true, size: 5, class: "form-control", required: true})
+              %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= link_to :cancel, user_purchases_path, class:"btn btn-default" %>
+              <button type="submit" class="btn btn-primary"><%= :submit %></button>
+            </div>
+          </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+<% end %>

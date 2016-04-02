@@ -11,18 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320173559) do
+ActiveRecord::Schema.define(version: 20160402172214) do
 
   create_table "debts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.integer  "amount"
     t.integer  "owner_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "purchase_id"
+  end
+
+  add_index "debts", ["purchase_id"], name: "index_debts_on_purchase_id"
+  add_index "debts", ["user_id"], name: "index_debts_on_user_id"
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "debts", ["user_id"], name: "index_debts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

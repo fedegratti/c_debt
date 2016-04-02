@@ -4,13 +4,11 @@ class DebtsController < ApplicationController
   before_action :set_user, only: [:index, :edit, :create]
 
   # GET /debts
-  # GET /debts.json
   def index
     @debts = @user.debts
   end
 
   # GET /debts/1
-  # GET /debts/1.json
   def show
   end
 
@@ -36,27 +34,18 @@ class DebtsController < ApplicationController
   end
 
   # PATCH/PUT /debts/1
-  # PATCH/PUT /debts/1.json
   def update
-    respond_to do |format|
       if @debt.update(debt_params)
-        format.html { redirect_to @debt, notice: 'Debt was successfully updated.' }
-        format.json { render :show, status: :ok, location: @debt }
+        redirect_to user_debts_url, notice: 'Debt was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @debt.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /debts/1
-  # DELETE /debts/1.json
   def destroy
     @debt.destroy
-    respond_to do |format|
-      format.html { redirect_to debts_url, notice: 'Debt was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_debts_url, notice: 'Debt was successfully destroyed.'
   end
 
   private
