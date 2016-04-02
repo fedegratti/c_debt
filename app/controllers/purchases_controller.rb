@@ -40,6 +40,9 @@ class PurchasesController < ApplicationController
         @debt.owner_id = Integer (user_id)
         @debt.purchase_id = @purchase.id
         @debt.save
+
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.welcome_email(user_id, @debt).deliver_later
       end
 
       redirect_to user_purchases_path(params.require :user_id), notice: 'Purchase was successfully created.'

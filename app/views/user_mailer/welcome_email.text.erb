@@ -1,0 +1,12 @@
+Hey <%= @user.name %>!
+===============================================
+
+You have a new debt:
+Title: <%= @debt.title %>
+Amount: <%= @debt.amount %>
+Created By: <%= @debt.user.name %>
+
+To login to the site, just follow this link: <%= @url %>.
+If you don't remember, your username is: <%= @user.email %>.
+
+Have a great day!

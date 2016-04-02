@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hey <%= @user.name %>!</h1>
+    <p>
+      You have a new debt:
+      <br>
+      Title: <%= @debt.title %>
+      <br>
+      Amount: <%= @debt.amount %>
+      <br>
+      Created By: <%= @debt.user.name %>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+      <br>
+      If you don't remember, your username is: <%= @user.email %>.<br>
+    </p>
+    <br>
+    <p>Have a great day!</p>
+  </body>
+</html>
