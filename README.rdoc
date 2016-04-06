@@ -1,28 +1,29 @@
-== README
+# c_debt
+The E-Cuberg's debt system.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Instalation:
 
-Things you may want to cover:
+Clone this repo, open a terminal, go to the repo's folder and run the following commands:
 
-* Ruby version
+1: Install all the gems we need.
+ `bundle install`
 
-* System dependencies
+2: Create the db.
+`rake db:migrate`
 
-* Configuration
+3: (optional) Insert some seeds.
+`rake db:seed`
 
-* Database creation
+And that's it!
 
-* Database initialization
+Just run rails using  `rails s`
 
-* How to run the test suite
+Enjoy!
 
-* Services (job queues, cache servers, search engines, etc.)
+##Description:
 
-* Deployment instructions
+Comming soon
 
-* ...
+##Entity–relationship model:
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Coming soon
