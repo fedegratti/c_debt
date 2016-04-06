@@ -1,4 +1,4 @@
-##C_debt
+# C_debt
 The Cuberg's billing system.
 
 ##Instalation:
