@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'users/:user_id/debts/:id/pay' => 'debts#pay'
   get 'users/:user_id/purchases/:id/pay' => 'purchases#pay'
-  get 'make_fucking_admin/:email' => 'users#make_admin'
+  #get 'make_fucking_admin/:email' => 'users#make_admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
