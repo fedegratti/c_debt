@@ -48,6 +48,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # Make someone admin
+  def make_admin
+    @user = User.where("email like ?", "%" + params[:email] + "%").take
+    @user.admin = true
+    @user.save
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
