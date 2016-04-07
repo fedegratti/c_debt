@@ -6,6 +6,9 @@ gem 'rails', '4.2.5.1'
 #postgresql
 gem 'pg'
 
+#activeadmin
+gem 'activeadmin', '~> 1.0.0.pre2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
