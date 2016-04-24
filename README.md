@@ -1,6 +1,9 @@
 # C_debt
 The Cuberg's billing system.
 
+## Build status:
+[![Build Status](https://travis-ci.org/fedegratti/c_debt.svg?branch=master)](https://travis-ci.org/fedegratti/c_debt)
+
 ##Instalation:
 
 Clone this repo, open a terminal, go to the repo's folder and run the following commands:
