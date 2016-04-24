@@ -43,7 +43,7 @@
             <strong>You owe <%= @user.name %></strong>
           </td>
           <td>
-            $ <%= @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id) ? amount + debt.amount : amount} %>
+            $ <%= @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount} %>
           </td>
         </tr>
       <% end %>
@@ -53,7 +53,7 @@
         <strong>Total debts amount</strong>
       </td>
       <td>
-        $ <%= @users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id) ? amount + debt.amount : amount } + total_amount} %>
+        $ <%= @users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount } + total_amount} %>
       </td>
     </tr>
   </table>
