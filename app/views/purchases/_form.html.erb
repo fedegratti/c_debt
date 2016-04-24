@@ -41,6 +41,7 @@
           <div class="form-group">
             <%= f.label :users, class:'col-lg-2 control-label'  %>
             <div class="col-lg-10">
+              <p>When you create a purchase, its amount will split as many times as users you choose, plus you.</p>
               <%= f.select(
                   "user",
                   @users,
