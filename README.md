@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/fedegratti/c_debt.svg?branch=master)](https://travis-ci.org/fedegratti/c_debt)
 
 # C_debt
-The Cuberg's billing system.
+The cloudtag's billing system.
 
 ##Instalation:
 
