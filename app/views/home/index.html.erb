@@ -38,7 +38,7 @@
   <table class="table table-striped table-hover ">
     <tbody>
       <% for @user in @users %>
-        <tr>
+        <tr class="danger">
           <td>
             <strong>You owe <%= @user.name %></strong>
           </td>
@@ -48,12 +48,23 @@
         </tr>
       <% end %>
     </tbody>
+    <tbody>
+      <% @user_debts_amount = 0 %>
+      <% @user_debts.each do |debt| %>
+        <tr class="success">
+          <td><strong><%= debt.owner.name %> owe you</strong></td>
+
+          <td>$ <%= debt.amount %></td>
+          <% @user_debts_amount += debt.amount %>
+        </tr>
+      <% end %>
+    </tbody>
     <tr>
       <td>
         <strong>Total debts amount</strong>
       </td>
       <td>
-        $ <%= @users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount } + total_amount} %>
+        $ <%= (@users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount } + total_amount}) - @user_debts_amount %>
       </td>
     </tr>
   </table>

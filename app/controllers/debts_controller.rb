@@ -28,7 +28,7 @@ class DebtsController < ApplicationController
 
     if @debt.save
       # Tell the UserMailer to send a welcome email after save
-      UserMailer.welcome_email(@debt.user_id, @debt).deliver_later
+      UserMailer.welcome_email(@debt.owner_id, @debt).deliver_later
 
       redirect_to user_debts_path(params.require :user_id), notice: 'Debt was successfully created.'
     else
