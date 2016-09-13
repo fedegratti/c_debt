@@ -11,6 +11,6 @@ class HomeController < ApplicationController
   private
 
   def set_users
-    @users = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user.id).where deleted_at: nil
   end
 end

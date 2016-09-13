@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.where deleted_at: nil
   end
 
   # GET /users/1
@@ -42,10 +42,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    respond_to do |format|
-      redirect_to users_url, notice: 'User was successfully destroyed.'
-    end
+    @user.soft_delete
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
   # Make someone admin

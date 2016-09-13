@@ -8,7 +8,8 @@
 
 User.create!([{name: "Fede",
               email: "fede@test.com",
-              password: "12345678"},
+              password: "12345678",
+              admin: true},
              ])
 
 User.create!([{name: "Caco",
@@ -18,5 +19,6 @@ User.create!([{name: "Caco",
 
 User.create!([{name: "Nico",
               email: "nico@test.com",
-              password: "12345678"},
+              password: "12345678",
+              deleted_at: Time.current},
              ])
