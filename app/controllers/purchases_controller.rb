@@ -94,7 +94,7 @@ class PurchasesController < ApplicationController
     end
 
     def set_users
-      @users = User.where.not(id: current_user.id).pluck(:name, :id)
+      @users = (User.where.not(id: current_user.id).where deleted_at: nil).pluck(:name, :id)
     end
 
     def clean_select_multiple_params hash = params

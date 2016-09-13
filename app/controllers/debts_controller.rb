@@ -28,7 +28,7 @@ class DebtsController < ApplicationController
 
     if @debt.save
       # Tell the UserMailer to send a welcome email after save
-      UserMailer.welcome_email(@debt.owner_id, @debt).deliver_later
+      UserMailer.welcome_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
 
       redirect_to user_debts_path(params.require :user_id), notice: 'Debt was successfully created.'
     else
@@ -75,7 +75,7 @@ class DebtsController < ApplicationController
     end
 
     def set_users
-      @users = User.pluck(:name, :id)
+      @users = (User.where deleted_at: nil).pluck(:name, :id)
     end
 
 end

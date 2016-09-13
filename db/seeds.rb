@@ -22,3 +22,13 @@ User.create!([{name: "Nico",
               password: "12345678",
               deleted_at: Time.current},
              ])
+
+User.create!([{name: "Juanma",
+              email: "juanma@test.com",
+              password: "12345678"},
+             ])
+
+User.create!([{name: "Santi",
+              email: "santi@test.com",
+              password: "12345678"},
+             ])
