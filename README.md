@@ -3,7 +3,7 @@
 # C_debt
 The cloudtag's billing system.
 
-##Instalation:
+## Instalation:
 
 Clone this repo, open a terminal, go to the repo's folder and run the following commands:
 
@@ -21,11 +21,3 @@ And that's it!
 Just run rails using  `rails s`
 
 Enjoy!
-
-##Description
-
-Coming soon..
-
-##Entity–relationship model:
-
-Coming soon...
