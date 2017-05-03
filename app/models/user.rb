@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :debts, dependent: :destroy
+  has_many :relationships
+  has_many :friends, through: :relationships
 
   def is_deleted?
     !!deleted_at
