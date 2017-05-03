@@ -27,29 +27,29 @@
         <legend></legend>
 
         <div class="form-group">
-          <%= f.label :title, class:'col-lg-2 control-label' %>
+          <%= f.label t(:title), class:'col-lg-2 control-label' %>
           <div class="col-lg-10">
-            <%= f.text_field :title, class:'form-control', placeholder: :title, required: true %>
+            <%= f.text_field :title, class:'form-control', placeholder: t(:title), required: true %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= f.label :amount, class:'col-lg-2 control-label' %>
+          <%= f.label t(:amount), class:'col-lg-2 control-label' %>
           <div class="col-lg-10">
-            <%= f.text_field :amount, class:'form-control', placeholder: :amount, required: true %>
+            <%= f.text_field :amount, class:'form-control', placeholder: t(:amount), required: true %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= f.label :owner, class:'col-lg-2 control-label'  %>
+          <%= f.label t(:owner), class:'col-lg-2 control-label'  %>
           <div class="col-lg-10">
             <%= f.select :owner_id, @users, {}, { class: "form-control", required: true } %>
           </div>
         </div>
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
-            <%= link_to :cancel, user_debts_path, class:"btn btn-default" %>
-            <button type="submit" class="btn btn-primary"><%= :submit %></button>
+            <%= link_to t(:cancel), user_debts_path, class:"btn btn-default" %>
+            <button type="submit" class="btn btn-primary"><%= t(:submit) %></button>
           </div>
         </div>
       </fieldset>

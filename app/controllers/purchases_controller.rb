@@ -45,7 +45,7 @@ class PurchasesController < ApplicationController
         UserMailer.welcome_email(user_id, @debt).deliver_later
       end
 
-      redirect_to user_purchases_path(params.require :user_id), notice: 'Purchase was successfully created.'
+      redirect_to user_purchases_path(params.require :user_id), notice: t('was_successfully_created',name: t('purchase'))
     else
       render :new
     end
@@ -54,7 +54,7 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   def update
       if @purchase.update(purchase_params)
-        redirect_to user_purchases_url, notice: 'Purchase was successfully updated.'
+        redirect_to user_purchases_url, notice: t('was_successfully_updated', name: t('purchase'))
       else
         render :edit
       end
@@ -68,14 +68,14 @@ class PurchasesController < ApplicationController
         debt.paid = true
         debt.save
       end
-      redirect_to user_purchases_url, notice: 'Purchase was marked as paid.'
+      redirect_to user_purchases_url, notice: t('was_marked_as_paid', name: t('purchase'))
     end
   end
 
   # DELETE /purchases/1
   def destroy
     @purchase.destroy
-    redirect_to user_purchases_url, notice: 'Purchase was successfully destroyed.'
+    redirect_to user_purchases_url, notice: t('was_successfully_destroyed', name: t('purchase'))
   end
 
   private

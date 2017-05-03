@@ -30,7 +30,7 @@ class DebtsController < ApplicationController
       # Tell the UserMailer to send a welcome email after save
       UserMailer.welcome_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
 
-      redirect_to user_debts_path(params.require :user_id), notice: 'Debt was successfully created.'
+      redirect_to user_debts_path(params.require :user_id), notice: t('was_successfully_created',name: t('debt'))
     else
       render :new
     end
@@ -39,7 +39,7 @@ class DebtsController < ApplicationController
   # PATCH/PUT /debts/1
   def update
       if @debt.update(debt_params)
-        redirect_to user_debts_url, notice: 'Debt was successfully updated.'
+        redirect_to user_debts_url, notice: t('was_successfully_updated', name: t('debt'))
       else
         render :edit
       end
@@ -49,14 +49,14 @@ class DebtsController < ApplicationController
   def pay
     @debt.paid = true
     if @debt.save
-        redirect_to user_debts_url, notice: 'Debt was marked as paid.'
+        redirect_to user_debts_url, notice: t('was_marked_as_paid', name: t('debt'))
     end
   end
 
   # DELETE /debts/1
   def destroy
     @debt.destroy
-    redirect_to user_debts_url, notice: 'Debt was successfully destroyed.'
+    redirect_to user_debts_url, notice: t('was_successfully_destroyed', name: t('debt'))
   end
 
   private

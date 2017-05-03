@@ -13,7 +13,7 @@
           <tr>
             <th><%= t('title') %></th>
             <th><%= t('amount') %></th>
-            <th>Created by</th>
+            <th><%= t('created_by') %></th>
             <th><%= t('issue_date') %></th>
           </tr>
         </thead>
@@ -33,14 +33,14 @@
 <div class="col-lg-1">
 </div>
 <div class="col-lg-4">
-  <h1>Debts information</h1>
+  <h1><%= t('debts_information') %></h1>
 
   <table class="table table-striped table-hover ">
     <tbody>
       <% for @user in @users %>
         <tr class="danger">
           <td>
-            <strong>You owe <%= @user.name %></strong>
+            <strong><%= t('you_owe', name: @user.name) %></strong>
           </td>
           <td>
             $ <%= @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount} %>
@@ -61,7 +61,7 @@
     </tbody>
     <tr>
       <td>
-        <strong>Total debts amount</strong>
+        <strong><%= t('total_debts_amount') %></strong>
       </td>
       <td>
         $ <%= (@users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount } + total_amount}) - @user_debts_amount %>

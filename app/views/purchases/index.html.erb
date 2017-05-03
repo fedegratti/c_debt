@@ -25,9 +25,9 @@
           <tr>
             <td><%= purchase.name %></td>
             <td><%= purchase.amount %></td>
-            <td><%= link_to 'Mark as paid', pay_user_purchase_path(purchase) %></td>
-            <td><%= link_to 'Edit', edit_user_purchase_path(@user,purchase) %></td>
-            <td><%= link_to 'Destroy', user_purchase_path(@user,purchase), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to t('mark_as_paid'), pay_user_purchase_path(purchase) %></td>
+            <td><%= link_to t('edit'), edit_user_purchase_path(@user,purchase) %></td>
+            <td><%= link_to t('destroy'), user_purchase_path(@user,purchase), method: :delete, data: { confirm: t('are_you_sure') } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -36,4 +36,4 @@
 </div>
 
 
-<%= link_to 'New Purchase', new_user_purchase_path, class:"btn btn-primary" %>
+<%= link_to t('new_purchase'), new_user_purchase_path, class:"btn btn-primary" %>

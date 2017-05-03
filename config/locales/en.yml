@@ -1,26 +1,37 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  amount: "Amount"
+  are_you_sure: "Are you sure?"
+  cancel: "Cancel"
+  created_by: "Created by"
+  debt: "Debt"
+  destroy: "Destroy"
+  debts_information: "Debts information"
+  debt_owner: "Debt owner"
+  edit: "Edit"
+  editing_purchase: "Edit purchase"
+  issue_date: "Issue date"
+  hello: "Hello %{name}"
+  listing_debts_you_created: "Listing debts you created"
+  listing_purchases: "Listing purchases"
+  listing_your_debts: "Listing your debts"
+  mark_as_paid: "Mark as paid"
+  name: "Name"
+  new_debt: "New Debt"
+  new_purchase: "New Purchase"
+  owner: "Owner"
+  purchase: "Purchase"
+  submit: "Submit"
+  title: "Title"
+  total_debts_amount: "Total debts amount"
+  users: "Users"
+  users_description: "When you create a purchase, its amount will split as many times as users you choose, plus you."
+  was_marked_as_paid: "%{name} was marked as paid."
+  was_successfully_created: "%{name} was successfully created."
+  was_successfully_destroyed: "%{name} was successfully destroyed."
+  was_successfully_updated: "%{name} was successfully updated."
+  you_owe: "Le debes a %{name}"
+  your_debts: "Your debts"
+  your_purchases: "Your purchases"
   devise:
     failure:
       deleted_account: "You've deleted your account. Thanks!"
