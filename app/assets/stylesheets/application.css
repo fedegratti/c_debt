@@ -232,3 +232,40 @@ body {
         top: 2.5em;
     }
 }
+.facebook-image {
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+a.btn.btn-primary.facebook {
+    background-color: #4267b2;
+}
+a.btn.btn-primary.facebook:hover {
+    background-color: #365899;
+}
+a.btn.btn-primary.facebook:active {
+    background-color: #29487d;
+}
+label.col-lg-2.control-label.login {
+    margin-top: 10px;
+}
+.navbar .navbar-nav > li > a:hover {
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1)!important;
+}
+.navbar.navbar, .navbar-default.navbar {
+    background-color: #0f9d58!important;
+}
+.btn:not(.btn-link):not(.btn-flat),
+.btn-default:not(.btn-link):not(.btn-flat) {
+    background-color: rgba(0, 0, 0, 0.2)!important;
+}
+
+.btn-primary:not(.btn-link):not(.btn-flat) {
+    background-color: #0f9d58!important;
+}
+.btn-primary:hover:not(.btn-link):not(.btn-flat) {
+  background-color: rgba(15, 157, 88, 0.8)!important;
+}
+.alert-success {
+    background-color: #1976D2!important;
+}

@@ -10,53 +10,42 @@
 
     </head>
     <body>
-    <div class="navbar <%= @side_color %> noMargin">
+    <div class="navbar noMargin">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand fontJedi" href="/">C debt</a>
-            <div class="app_version">v0.5.1</div>
+            <a class="navbar-brand" href="/" title="version: <%= ENV["APP_VERSION"] %>"><img class="dues-logo" src="/assets/dues_logo.png"></a>
         </div>
         <div class="navbar-collapse collapse navbar-warning-collapse">
             <ul class="nav navbar-nav">
             <% if current_user != nil %>
-                <li>
+                <li id="debts">
                     <%= link_to t('your_debts'), user_debts_path(current_user.id) %>
                 </li>
-                <li>
+                <li id="purchases">
                     <%= link_to t('your_purchases'), user_purchases_path(current_user.id) %>
                 </li>
+                <li id="settings">
+                    <%= link_to t('settings'), settings_path %>
+                </li>
             <% end %>
-
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
+            <ul class="nav navbar-nav navbar-right dropdown">
                 <% if current_user != nil %>
-                    <h3 class="user_name"><%= t('hello', name: current_user.name) %></h3>
-                <% end %>
+                <li>
+                    <a class="user_name" href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><%= t('hello', name: current_user.name) %>
 
-                </li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                        <% if I18n.locale == :es %>
-                        ES
-                        <% else %>
-                        EN
-                        <% end %>
-                        <b class="caret"></b>
+                    <% if current_user.image != nil %><img src="<%= current_user.image %>" class="facebook-image" ><% end %>
                     </a>
                     <ul class="dropdown-menu">
-                        <% if I18n.locale == :es %>
-                            <li><a href="javascript:selectLanguage('en')">EN</a></li>
-                        <% else %>
-                            <li><a href="javascript:selectLanguage('es')">ES</a></li>
-                        <% end %>
+                        <li><%= link_to t('Logout'), destroy_user_session_path, :method => :delete %></li>
                     </ul>
                 </li>
+                <% end %>
             </ul>
         </div>
     </div>
@@ -65,16 +54,8 @@
     <script>
         $(function() {
             $.material.init();
+            $('#<%= controller_name %>').addClass("active")
         });
-        function selectLanguage (language)
-        {
-            $.ajax({
-              url: <%= language_path %> + language,
-              success: function () {
-                location.reload();
-              }
-            });
-        }
     </script>
 
     </body>
