@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503155315) do
+ActiveRecord::Schema.define(version: 20170505181949) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -21,9 +24,9 @@ ActiveRecord::Schema.define(version: 20170503155315) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "debts", force: :cascade do |t|
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20170503155315) do
     t.datetime "updated_at",                  null: false
     t.integer  "purchase_id"
     t.boolean  "paid",        default: false
-    t.index ["purchase_id"], name: "index_debts_on_purchase_id"
-    t.index ["user_id"], name: "index_debts_on_user_id"
+    t.index ["purchase_id"], name: "index_debts_on_purchase_id", using: :btree
+    t.index ["user_id"], name: "index_debts_on_user_id", using: :btree
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -46,15 +49,15 @@ ActiveRecord::Schema.define(version: 20170503155315) do
     t.datetime "updated_at",                 null: false
     t.boolean  "paid",       default: false
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
   end
 
   create_table "relationships", id: false, force: :cascade do |t|
     t.integer "user_id",   null: false
     t.integer "friend_id", null: false
-    t.index ["friend_id"], name: "index_relationships_on_friend_id"
-    t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true
-    t.index ["user_id"], name: "index_relationships_on_user_id"
+    t.index ["friend_id"], name: "index_relationships_on_friend_id", using: :btree
+    t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,8 +76,14 @@ ActiveRecord::Schema.define(version: 20170503155315) do
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false
     t.datetime "deleted_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
+    t.json     "settings"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "debts", "purchases"
+  add_foreign_key "purchases", "users"
 end

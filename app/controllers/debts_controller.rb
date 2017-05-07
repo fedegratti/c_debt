@@ -27,8 +27,10 @@ class DebtsController < ApplicationController
     @debt.user_id = params.require :user_id
 
     if @debt.save
-      # Tell the UserMailer to send a welcome email after save
-      UserMailer.welcome_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
+      if @user.settings['email_notification_enabled'] && @user.settings['email_notification_frecuency'] == 'instantly'
+        #UserMailer.instant_email(@debt.owner_id, @debt).deliver_now
+        UserMailer.instant_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
+      end
 
       redirect_to user_debts_path(params.require :user_id), notice: t('was_successfully_created',name: t('debt'))
     else

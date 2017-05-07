@@ -41,8 +41,12 @@ class PurchasesController < ApplicationController
         @debt.purchase_id = @purchase.id
         @debt.save
 
+        owner_user = User.find(user_id)
+
         # Tell the UserMailer to send a welcome email after save
-        UserMailer.welcome_email(user_id, @debt).deliver_later
+        if owner_user.settings['email_notification_enabled'] && owner_user.settings['email_notification_frecuency'] == 'instantly'
+          UserMailer.instant_email(user_id, @debt).deliver_later
+        end
       end
 
       redirect_to user_purchases_path(params.require :user_id), notice: t('was_successfully_created',name: t('purchase'))

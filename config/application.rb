@@ -27,5 +27,8 @@ module CDebt
     config.assets.enabled = true
     config.assets.paths << '#{Rails.root}/app/assets/fonts'
     config.i18n.default_locale = :es
+    config.active_job.queue_adapter = :sidekiq
+
+    require 'ext/string'
   end
 end
