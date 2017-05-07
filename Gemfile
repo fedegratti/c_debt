@@ -57,3 +57,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails_12factor', group: :production
+gem 'omniauth-facebook'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'sidekiq'
+gem 'whenever', :require => false
+gem 'whenever-test'
