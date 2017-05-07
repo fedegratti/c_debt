@@ -1,0 +1,13 @@
+<%= t('hello', name: @user.name) %>!
+
+<%= t('you_have_a_new_due') %>:
+===============================================
+
+<%= t('title') %>: <%= @debt.title %>
+<%= t('amount') %>: <%= @debt.amount %>
+<%= t('created_by') %>: <%= @debt.user.name %>
+
+<%= t('login_description') %>: <%= @url %>.
+<%= t('just_in_case', email: @user.email) %>.
+
+<%= t('have_a_great_day') %>!

@@ -1,0 +1,16 @@
+<%= t('hello', name: @user.name) %>!
+
+<%= t('these_are_your_unpaid_dues') %>:
+===============================================
+
+<% @debts.each do |debt| %>
+<%= t('title') %>: <%= debt.title %>
+<%= t('amount') %>: <%= debt.amount %>
+<%= t('created_by') %>: <%= debt.user.name %>
+
+<% end %>
+
+ <%= t('login_description') %>: <%= @url %>.
+<%= t('just_in_case', email: @user.email) %>.
+
+<%= t('have_a_great_day') %>!

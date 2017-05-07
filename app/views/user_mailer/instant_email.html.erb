@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= t('hello', name: @user.name) %></h1>
+    <h3><%= t('you_have_a_new_due') %>:</h3>
+      <p>
+        <strong><%= t('title') %>:</strong> <%= @debt.title %>
+        <br>
+        <strong><%= t('amount') %>:</strong> <%= @debt.amount %>
+        <br>
+        <strong><%= t('created_by') %>:</strong> <%= @debt.user.name %>
+      </p>
+      <p>
+        <%= t('login_description') %>: <a href=<%= @url %>><%= @url %></a>.
+        <br>
+        <%= t('just_in_case', email: @user.email) %>.
+        <br>
+      </p>
+    <p><%= t('have_a_great_day') %>!</p>
+  </body>
+</html>
