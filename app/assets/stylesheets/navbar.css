@@ -30,3 +30,7 @@
   font-size: 25px!important;
   padding: 0px 0px 0px 10px!important;
 }
+.user_name_label {
+  display: inline-table;
+  padding: 20px;
+}

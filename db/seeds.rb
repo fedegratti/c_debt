@@ -1,34 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 User.create!([{name: "Fede",
               email: "fede@test.com",
               password: "12345678",
-              admin: true},
+              admin: true,
+              settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"instantly", "language"=>"en"}},
              ])
 
 User.create!([{name: "Caco",
               email: "caco@test.com",
-              password: "12345678"},
+              password: "12345678",
+              settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"every_day", "language"=>"en"}},
              ])
 
 User.create!([{name: "Nico",
               email: "nico@test.com",
               password: "12345678",
-              deleted_at: Time.current},
+              deleted_at: Time.current,
+              settings: {"email_notification_enabled"=>false, "email_notification_frecuency"=>"instantly", "language"=>"en"}},
              ])
 
 User.create!([{name: "Juanma",
               email: "juanma@test.com",
-              password: "12345678"},
+              password: "12345678",
+              settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"every_week", "language"=>"es"}},
              ])
 
 User.create!([{name: "Santi",
               email: "santi@test.com",
-              password: "12345678"},
+              password: "12345678",
+              settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"instantly", "language"=>"en"}},
              ])

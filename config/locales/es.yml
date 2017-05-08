@@ -11,6 +11,7 @@ es:
   edit: "Editar"
   editing_purchase: "Editar Compra"
   editing_settings: "Editar Configuración"
+  email: "Email"
   email_notification: "Habilitar notificaciones por email"
   email_notification_frecuency: "Frecuendia de notificaciones"
   every_day: "Una vez por día"
@@ -33,14 +34,17 @@ es:
   new_purchase: "Nueva Compra"
   owner: "Dueño"
   password: "Contraseña"
+  password_confirmation: "Repite la Contraseña"
   purchase: "Compra"
   remember_me: "Recordar"
   settings: "Configuración"
   settings_successfully_saved: "Configuración guardada correctamente"
+  sign_up: "Crear una cuenta"
   submit: "Enviar"
   these_are_your_unpaid_dues: "Aquí están las deudas impagas"
   title: "Título"
   total_debts_amount: "Deuda total"
+  user: "Usuario"
   users: "Usuarios"
   users_description: "Cuando creas una compra, el monto se dividirá entre tu y todos los usuarios que elijas."
   was_marked_as_paid: "La %{name} fue marcada como paga."
@@ -52,6 +56,13 @@ es:
   you_owe: "Le debes a %{name}"
   your_debts: "Tus deudas"
   your_purchases: "Tus compras"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "El Email ya está usado en otra cuenta"
   devise:
     failure:
       deleted_account: "Has borrado tu cuenta. Gracias!"
@@ -61,3 +72,6 @@ es:
     sessions:
       user:
         signed_in: "Iniciado sesión"
+    registrations:
+      user:
+        signed_up: "Registrado correctamente"

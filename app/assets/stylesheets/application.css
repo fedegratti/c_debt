@@ -237,13 +237,13 @@ body {
     background-color: rgba(0, 0, 0, 0.15);
 }
 a.btn.btn-primary.facebook {
-    background-color: #4267b2;
+    background-color: #4267b2!important;
 }
 a.btn.btn-primary.facebook:hover {
-    background-color: #365899;
+    background-color: #365899!important;
 }
 a.btn.btn-primary.facebook:active {
-    background-color: #29487d;
+    background-color: #29487d!important;
 }
 label.col-lg-2.control-label.login {
     margin-top: 10px;

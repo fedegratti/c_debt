@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name
       user.image = auth.info.image # assuming the user model has an image
+      # Set initial settings
+      user.settings = {} if user.settings.nil?
+      user.settings[:email_notification_enabled] = true
+      user.settings[:email_notification_frecuency] = 'instantly'
+      user.settings[:language] = 'en'
     end
   end
 

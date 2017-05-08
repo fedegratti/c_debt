@@ -9,43 +9,44 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    redirect_to '/'
   end
 
   # GET /users/new
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   # GET /users/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /users
-  def create
-    @user = User.new(user_params)
+  # def create
+  #   @user = User.new(user_params)
 
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
-    else
-      render :new
-    end
-  end
+  #   if @user.save
+  #     redirect_to @user, notice: 'User was successfully created.'
+  #   else
+  #     render :new
+  #   end
+  # end
 
   # PATCH/PUT /users/1
-  def update
-      if @user.update(user_params)
-        redirect_to @user, notice: 'User was successfully updated.'
-      else
-        render :edit
-      end
-  end
+  # def update
+  #     if @user.update(user_params)
+  #       redirect_to @user, notice: 'User was successfully updated.'
+  #     else
+  #       render :edit
+  #     end
+  # end
 
   # DELETE /users/1
-  def destroy
-    @user.soft_delete
-    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-    redirect_to users_url, notice: 'User was successfully destroyed.'
-  end
+  # def destroy
+  #   @user.soft_delete
+  #   Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+  #   redirect_to users_url, notice: 'User was successfully destroyed.'
+  # end
 
   # Make someone admin
   # def make_admin

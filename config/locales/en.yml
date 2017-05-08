@@ -11,6 +11,7 @@ en:
   edit: "Edit"
   editing_purchase: "Edit purchase"
   editing_settings: "Edit settings"
+  email: "Email"
   email_notification: "Enable email notifications"
   email_notification_frecuency: "Email notification frecuency"
   every_day: "Every day"
@@ -33,14 +34,17 @@ en:
   new_purchase: "New Purchase"
   owner: "Owner"
   password: "Password"
+  password_confirmation: "Password confirmation"
   purchase: "Purchase"
   remember_me: "Remember me"
   settings: "Settings"
   settings_successfully_saved: "Settings successfully saved"
+  sign_up: "Sign up"
   submit: "Submit"
   these_are_your_unpaid_dues: "These are your unpaid dues"
   title: "Title"
   total_debts_amount: "Total debts amount"
+  user: "User"
   users: "Users"
   users_description: "When you create a purchase, its amount will split as many times as users you choose, plus you."
   was_marked_as_paid: "%{name} was marked as paid."
@@ -57,7 +61,10 @@ en:
       deleted_account: "You've deleted your account. Thanks!"
     omniauth_callbacks:
         user:
-          success: "signed in correctly"
+          success: "Signed in correctly"
     sessions:
       user:
-        signed_in: "signed in"
+        signed_in: "Signed in"
+    registrations:
+      user:
+        signed_up: "Signed up"
