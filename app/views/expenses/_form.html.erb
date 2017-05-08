@@ -1,0 +1,53 @@
+<%= form_for([@user,@expense], url: { action: action }) do |f| %>
+<% if @expense.errors.any? %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+    <ul>
+    <% @expense.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <%= notice %>
+</div>
+<script type="text/javascript">
+  $( document ).ready(function()
+  {
+    $('.field_with_errors').css ("display","block");
+    $('.field_with_errors').css ("background-color","#eee");
+    $('.field_with_errors').css ("border-radius","3px");
+  });
+</script>
+<% end %>
+
+<div class="col-lg-6">
+  <div class="well bs-component">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend></legend>
+
+          <div class="form-group">
+            <%= f.label t(:name), class:'col-lg-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.text_field :name, class:'form-control', placeholder: t(:name), required: true %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:amount), class:'col-lg-2 control-label' %>
+            <div class="col-lg-10">
+              <%= f.number_field :amount, class:'form-control', placeholder: t(:amount), required: true %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= link_to t(:cancel), user_expenses_path, class:"btn btn-default" %>
+              <button type="submit" class="btn btn-primary"><%= t(:submit) %></button>
+            </div>
+          </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
+<% end %>

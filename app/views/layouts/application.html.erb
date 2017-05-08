@@ -28,6 +28,9 @@
                 <li id="purchases">
                     <%= link_to t('your_purchases'), user_purchases_path(current_user.id) %>
                 </li>
+                <li id="expenses">
+                    <%= link_to t('your_expenses'), user_expenses_path(current_user.id) %>
+                </li>
                 <li id="settings">
                     <%= link_to t('settings'), settings_path %>
                 </li>

@@ -269,3 +269,8 @@ label.col-lg-2.control-label.login {
 .alert-success {
     background-color: #1976D2!important;
 }
+@media (max-width: 1199px) {
+    .navbar .navbar-brand {
+        padding-top: 5px!important;
+    }
+}

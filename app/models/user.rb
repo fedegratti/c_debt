@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :debts, dependent: :destroy
   has_many :relationships
   has_many :friends, through: :relationships
+  has_many :expenses
 
   def is_deleted?
     !!deleted_at
