@@ -40,12 +40,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_url(@user)
   end
 
+  test "should destroy user" do
 
-  # test "should destroy user" do
-  #   assert_difference('User.count', -1) do
-  #     delete :destroy, id: @user
-  #   end
+    assert_difference('User.count', 0) do
+      delete :destroy, params: { id: @user }
+    end
 
-  #   assert_redirected_to users_path
-  # end
+    assert User.find(@user.id).is_deleted?.to_s
+    assert_redirected_to users_path
+
+  end
 end

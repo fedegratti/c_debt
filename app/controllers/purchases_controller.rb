@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :pay, :destroy]
   before_action :set_user, only: [:index, :edit, :create]
-  before_action :set_users, only: [:new, :edit, :create, :update]
+  before_action :set_users, only: [:new, :edit]
   before_action :clean_select_multiple_params, only: [:create]
 
   # GET /purchases

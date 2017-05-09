@@ -7,10 +7,6 @@ class ExpensesController < ApplicationController
     @expenses = Expense.where user_id: current_user.id
   end
 
-  # GET /expenses/1
-  # def show
-  # end
-
   # GET /expenses/new
   def new
     @expense = Expense.new
@@ -70,16 +66,4 @@ class ExpensesController < ApplicationController
       @user = User.find(params.require :user_id)
     end
 
-    # def set_users
-    #   @users = (User.where.not(id: current_user.id).where deleted_at: nil).pluck(:name, :id)
-    # end
-
-    # def clean_select_multiple_params hash = params
-    #   hash.each do |k, v|
-    #     case v
-    #     when Array then v.reject!(&:blank?)
-    #     when Hash then clean_select_multiple_params(v)
-    #     end
-    #   end
-    #end
 end

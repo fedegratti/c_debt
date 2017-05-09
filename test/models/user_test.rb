@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test "makes sure three user is deleted" do
+    @user = users(:three)
+    assert @user.is_deleted?
+  end
+
 end

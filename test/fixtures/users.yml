@@ -1,5 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+user:
+  name: user
+  email: 'user@test.com'
+  settings: "{email_notification_enabled: true, email_notification_frecuency: 'instantly', language: 'en'}"
+
 one:
   name: MyString
   email: 1@test.com
@@ -7,3 +12,8 @@ one:
 two:
   name: user2
   email: 2@test.com
+
+three:
+  name: deleted_user
+  email: 3@test.com
+  deleted_at: 2009-06-24 12:39:54

@@ -1,9 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+debt:
+  title: debt
+  amount: 10
+  user: user
+  purchase: purchase
+
 one:
   title: MyString
   amount: 1
+  user: user
+  purchase: purchase
 
 two:
   title: MyString
   amount: 1
+  user: user
+  purchase: purchase
+

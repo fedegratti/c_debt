@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+purchase:
+  name: purchase
+  amount: 500
+  user: user
+
 one:
   name: MyString
   amount: 1
+  user: user
 
 two:
   name: MyString
   amount: 1
+  user: user

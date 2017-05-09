@@ -5,24 +5,28 @@ class DebtsControllerTest < ActionController::TestCase
     @debt = debts(:one)
   end
 
-  # test "should create debt" do
-  #   assert_difference('Debt.count') do
-  #     post :create, debt: { amount: @debt.amount, title: @debt.title }
-  #   end
+  test "should create debt" do
+    assert_difference('Debt.count') do
+      post :create, params: { user_id: @debt.user.id, debt: { amount: @debt.amount, title: @debt.title, owner_id: @debt.user.id } }
+    end
 
-  #   assert_redirected_to user_debt_path(assigns(:debt))
-  # end
+    assert_redirected_to user_debts_path(@debt.user.id)
+  end
 
-  # test "should update debt" do
-  #   patch :update, id: @debt, debt: { amount: @debt.amount, title: @debt.title }
-  #   assert_redirected_to user_debt_path(assigns(:debt))
-  # end
+  test "should update debt" do
+    patch :update, params: { id: @debt, user_id: @debt.user.id, debt: { amount: @debt.amount, title: "new_title", owner_id: @debt.user.id } }
 
-  # test "should destroy debt" do
-  #   assert_difference('Debt.count', -1) do
-  #     delete :destroy, id: @debt
-  #   end
+    edited_debt = Debt.find(@debt.id)
 
-  #   assert_redirected_to debts_path
-  # end
+    assert_equal edited_debt.title, 'new_title'
+    assert_redirected_to user_debts_url
+  end
+
+  test "should destroy debt" do
+    assert_difference('Debt.count', -1) do
+      delete :destroy, params: { id: @debt, user_id: @debt.user.id }
+    end
+
+    assert_redirected_to user_debts_path
+  end
 end
