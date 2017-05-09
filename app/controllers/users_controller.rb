@@ -12,10 +12,10 @@ class UsersController < ApplicationController
     redirect_to '/'
   end
 
-  # GET /users/new
-  # def new
-  #   @user = User.new
-  # end
+  #GET /users/new
+  def new
+    @user = User.new
+  end
 
   # GET /users/1/edit
   # def edit
@@ -33,13 +33,13 @@ class UsersController < ApplicationController
   # end
 
   # PATCH/PUT /users/1
-  # def update
-  #     if @user.update(user_params)
-  #       redirect_to @user, notice: 'User was successfully updated.'
-  #     else
-  #       render :edit
-  #     end
-  # end
+  def update
+      if @user.update(user_params)
+        redirect_to @user, notice: t('was_successfully_updated',name: t('user'))
+      else
+        render :edit
+      end
+  end
 
   # DELETE /users/1
   # def destroy

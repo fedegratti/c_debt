@@ -62,3 +62,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'sidekiq'
 gem 'whenever', :require => false
 gem 'whenever-test'
+gem 'rails-controller-testing'
