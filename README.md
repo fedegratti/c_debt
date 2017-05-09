@@ -1,7 +1,8 @@
 [![Build Status](https://travis-ci.org/fedegratti/c_debt.svg?branch=master)](https://travis-ci.org/fedegratti/c_debt)
+[![Coverage Status](https://coveralls.io/repos/github/fedegratti/c_debt/badge.svg?branch=master)](https://coveralls.io/github/fedegratti/c_debt?branch=master)
 
-# C_debt
-The cloudtag's billing system.
+# dues
+The cloudtag's due system.
 
 ## Instalation:
 
