@@ -1,5 +1,9 @@
 language: ruby
+before_script:
+  - psql -c 'create database cdebt_test;' -U postgres
 rvm:
   - 2.4.0
 bundler_args: --without development
 script: rake db:migrate RAILS_ENV=test && bundle exec rake
+services:
+  - postgresql
