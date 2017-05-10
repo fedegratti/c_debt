@@ -53,6 +53,7 @@ en:
   user: "User"
   users: "Users"
   users_description: "When you create a purchase, its amount will split as many times as users you choose, plus you."
+  was_not_marked_as_paid: "%{name} was not marked as paid."
   was_marked_as_paid: "%{name} was marked as paid."
   was_successfully_created: "%{name} was successfully created."
   was_successfully_destroyed: "%{name} was successfully destroyed."

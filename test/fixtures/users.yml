@@ -3,7 +3,7 @@
 user:
   name: user
   email: 'user@test.com'
-  settings: "{email_notification_enabled: true, email_notification_frecuency: 'instantly', language: 'en'}"
+  settings: {}
 
 one:
   name: MyString

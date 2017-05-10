@@ -51,7 +51,9 @@ class DebtsController < ApplicationController
   def pay
     @debt.paid = true
     if @debt.save
-        redirect_to user_debts_url, notice: t('was_marked_as_paid', name: t('debt'))
+      redirect_to user_debts_url, notice: t('was_marked_as_paid', name: t('debt'))
+    else
+      redirect_to user_debts_url, error: t('was_not_marked_as_paid', name: t('debt'))
     end
   end
 
@@ -79,5 +81,4 @@ class DebtsController < ApplicationController
     def set_users
       @users = (User.where deleted_at: nil).pluck(:name, :id)
     end
-
 end

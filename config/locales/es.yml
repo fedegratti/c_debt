@@ -53,6 +53,7 @@ es:
   user: "Usuario"
   users: "Usuarios"
   users_description: "Cuando creas una compra, el monto se dividirá entre tu y todos los usuarios que elijas."
+  was_not_marked_as_paid: "La %{name} no fue marcada como paga."
   was_marked_as_paid: "La %{name} fue marcada como paga."
   was_successfully_created: "La %{name} fue creada correctamente"
   was_successfully_destroyed: "La %{name} fue eliminada correctamente."
