@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/fedegratti/c_debt.svg?branch=master)](https://travis-ci.org/fedegratti/c_debt)
-[![Coverage Status](https://coveralls.io/repos/github/fedegratti/c_debt/badge.svg?branch=master)](https://coveralls.io/github/fedegratti/c_debt?branch=master)
+[![coverage](https://codecov.io/gh/fedegratti/c_debt/branch/master/graph/badge.svg)](https://codecov.io/gh/fedegratti/c_debt)
 
 # dues
 The cloudtag's due system.
