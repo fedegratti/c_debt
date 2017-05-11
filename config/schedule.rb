@@ -8,3 +8,7 @@ end
 every :week, :at => '11:00am' do
   runner "WeeklyEmailJob.perform_now"
 end
+
+every :month, :at => '11:00am' do
+  runner "MonthlyReportJob.perform_now"
+end

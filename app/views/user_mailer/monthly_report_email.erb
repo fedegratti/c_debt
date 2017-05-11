@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2><%= t('hello', name: @user.name) %>, <%= t('this_is_your_monthly_report') %>:</h2>
+
+    <h3><%= t('unpaid_expenses_of', month: t( (Time.now - 1.month).strftime("%B") )) %>:</h3>
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th><%= t('name') %></th>
+          <th><%= t('amount') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @unpaid_expenses.each do |unpaid_expense| %>
+          <tr>
+            <td><%= unpaid_expense.name %></td>
+            <td><%= unpaid_expense.amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h3><%= t('paid_expenses_of', month: t( (Time.now - 1.month).strftime("%B") )) %>:</h3>
+
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th><%= t('name') %></th>
+          <th><%= t('amount') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @paid_expenses.each do |unpaid_expense| %>
+          <tr>
+            <td><%= unpaid_expense.name %></td>
+            <td><%= unpaid_expense.amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% @unpaid_expense_amount = @unpaid_expenses.inject(0) {|amount, expense| amount + expense.amount } %>
+    <% @paid_expense_amount = @paid_expenses.inject(0) {|amount, expense| amount + expense.amount } %>
+    <br>
+    <strong><%= t('total_spent') %>: <%= @unpaid_expense_amount + @paid_expense_amount %> (<%=  @unpaid_expense_amount %> <%= t('is_unpaid') %>)</strong>
+
+    <h3><%= t('unpaid_dues_of', month: t( (Time.now - 1.month).strftime("%B") )) %>:</h3>
+
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th><%= t('title') %></th>
+          <th><%= t('amount') %></th>
+          <th><%= t('created_by') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @debts.each do |debt| %>
+          <tr>
+            <td><%= debt.title %></td>
+            <td><%= debt.amount %></td>
+            <td><%= debt.user.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <strong><%= t('total_dues') %>: <%= @debts.inject(0) {|amount, debt|  amount + debt.amount } %></strong>
+
+    <p>
+      <%= t('login_description') %>: <a href=<%= @url %>><%= @url %></a>.
+      <br>
+      <%= t('just_in_case', email: @user.email) %>.
+      <br>
+    </p>
+    <p><%= t('have_a_great_day') %>!</p>
+  </body>
+</html>

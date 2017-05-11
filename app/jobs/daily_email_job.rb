@@ -8,7 +8,7 @@ class DailyEmailJob < ApplicationJob
                         AND settings->>'email_notification_frecuency' = 'every_day'")
 
     users.each do |user|
-      debts = Debt.where("owner_id = #{user.id} AND paid = false")
+      debts = Debt.where("owner_id = #{user.id}").paid(false).created_after(1.day.ago)
       UserMailer.daily_email(user.id, debts).deliver_now unless debts.empty?
     end
 

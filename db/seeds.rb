@@ -29,3 +29,9 @@ User.create!([{name: "Santi",
               password: "12345678",
               settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"instantly", "language"=>"en"}},
              ])
+
+User.create!([{name: "Juli",
+              email: "juli@test.com",
+              password: "12345678",
+              settings: {"email_notification_enabled"=>true, "email_notification_frecuency"=>"every_week", "language"=>"es"}},
+             ])
