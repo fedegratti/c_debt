@@ -73,9 +73,12 @@ es:
   this_is_your_monthly_report: "este es tu reporte mensual"
   these_are_your_unpaid_dues: "Aquí están las deudas impagas"
   title: "Título"
-  total_spent: "Total gastado"
-  total_debts_amount: "Deuda total"
+  total_debts: "Deudas totales"
+  total_debts_amount: "Monto total en deudas"
   total_dues: "Deudas totales"
+  total_expenses: "Gastos totales"
+  total_expenses_amount: "Monto total en gastos"
+  total_spent: "Total gastado"
   unpaid_dues_of: "Deudas impagas de %{month}"
   unpaid_expenses_of: "Gastos impagos de %{month}"
   user: "Usuario"
@@ -101,6 +104,8 @@ es:
   your_purchases: "Tus compras"
   activerecord:
     errors:
+      messages:
+        record_invalid: "Registro inválido"
       models:
         user:
           attributes:

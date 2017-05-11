@@ -27,8 +27,11 @@ class DebtsController < ApplicationController
     @debt.user_id = params.require :user_id
 
     if @debt.save
-      if @user.settings['email_notification_enabled'] && @user.settings['email_notification_frecuency'] == 'instantly'
+      if @debt.owner.settings['email_notification_enabled'] && @debt.owner.settings['email_notification_frecuency'] == 'instantly'
+
+        I18n.locale = @debt.owner.settings['language']
         UserMailer.instant_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
+
       end
 
       redirect_to user_debts_path(params.require :user_id), notice: t('was_successfully_created_f',name: t('debt'))

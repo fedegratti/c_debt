@@ -9,9 +9,6 @@ class FriendsController < ApplicationController
 
   # GET /users/1/friends/candidate
   def candidate
-    #friend_ids = Relationship.select('friend_id').where("user_id = #{@user.id}")
-    #@friends = Friend.where.not(id: friend_ids).where("name like ? or email like ?", "%#{clue}%", "%#{clue}%")
-
     clue = params[:clue]
     @candidate_friends = @candidate_friends.where("name like ? or email like ?", "%#{clue}%", "%#{clue}%")
     render :layout => false
@@ -30,7 +27,6 @@ class FriendsController < ApplicationController
   # DELETE /users/1/friends
   def destroy
     @user.friends.delete(Friend.find(params[:id]))
-    #@user.save
     redirect_to user_friends_url, notice: t('was_successfully_destroyed_m', name: t('friend'))
   end
 

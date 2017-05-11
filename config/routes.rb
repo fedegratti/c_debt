@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
-  #devise_for :users, controllers: { registrations: "users/registrations" }
   get 'users/:user_id/friends/candidate' => 'friends#candidate'
 
   resources :users do

@@ -17,17 +17,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # POST /users
-  # def create
-  #   @user = User.new(user_params)
-
-  #   if @user.save
-  #     redirect_to @user, notice: 'User was successfully created.'
-  #   else
-  #     render :new
-  #   end
-  # end
-
   # PATCH/PUT /users/1
   def update
       if @user.update(user_params)
@@ -43,13 +32,6 @@ class UsersController < ApplicationController
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name) if current_user.id == @user.id
     redirect_to users_url, notice: t('was_successfully_destroyed', name: t('user'))
   end
-
-  # Make someone admin
-  # def make_admin
-  #   @user = User.where("email like ?", "%" + params[:email] + "%").take
-  #   @user.admin = true
-  #   @user.save
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

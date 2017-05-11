@@ -8,6 +8,8 @@ class WeeklyEmailJob < ApplicationJob
                         AND settings->>'email_notification_frecuency' = 'every_week'")
 
     users.each do |user|
+      I18n.locale = user.settings['language']
+
       debts = Debt.where("owner_id = #{user.id}").paid(false).created_after(1.week.ago)
       UserMailer.weekly_email(user.id, debts).deliver_now unless debts.empty?
     end
