@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get 'settings' => 'settings#edit'
   post 'settings/update' => 'settings#update'
 
-  #get 'users/:user_id/friends/new' => 'friends#new'
   post 'users/:user_id/friends/add/:friend_id' => 'friends#add'
 
   get 'admin/reports' => 'reports#index'

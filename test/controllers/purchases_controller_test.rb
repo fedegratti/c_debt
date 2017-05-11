@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PurchasesControllerTest < ActionController::TestCase
   setup do
-    @purchase = purchases(:one)
+    @purchase = purchases(:purchase)
   end
 
   test "should create purchase" do
@@ -24,5 +24,19 @@ class PurchasesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to user_purchases_url
+  end
+
+  test "should pay purchase" do
+    get :pay, params: { id: @purchase, user_id: @purchase.user.id }
+    paid_purchase = Purchase.find(@purchase.id)
+    assert paid_purchase.paid
+  end
+
+  test "should not pay purchase" do
+    @purchase.amount = nil
+    @purchase.save!(validate: false)
+    get :pay, params: { id: @purchase, user_id: @purchase.user.id }
+    paid_purchase = Purchase.find(@purchase.id)
+    assert_not paid_purchase.paid
   end
 end

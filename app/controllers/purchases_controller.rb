@@ -4,25 +4,25 @@ class PurchasesController < ApplicationController
   before_action :set_users, only: [:new, :edit]
   before_action :clean_select_multiple_params, only: [:create]
 
-  # GET /purchases
+  # GET /users/1/purchases
   def index
     @purchases = Purchase.where user_id: current_user.id, paid: false
   end
 
-  # GET /purchases/1
+  # GET /users/1/purchases/1
   def show
   end
 
-  # GET /purchases/new
+  # GET /users/1/purchases/new
   def new
     @purchase = Purchase.new
   end
 
-  # GET /purchases/1/edit
+  # GET /users/1/purchases/1/edit
   def edit
   end
 
-  # POST /purchases
+  # POST /users/1/purchases
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.user_id = params.require :user_id
@@ -55,7 +55,7 @@ class PurchasesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /purchases/1
+  # PATCH/PUT /users/1/purchases/1
   def update
       if @purchase.update(purchase_params)
         redirect_to user_purchases_url, notice: t('was_successfully_updated_f', name: t('purchase'))
@@ -64,7 +64,7 @@ class PurchasesController < ApplicationController
       end
   end
 
-  # GET /debts/1/pay
+  # GET /users/1/purchases/1/pay
   def pay
     @purchase.paid = true
     if @purchase.save
@@ -78,7 +78,7 @@ class PurchasesController < ApplicationController
     end
   end
 
-  # DELETE /purchases/1
+  # DELETE /users/1/purchases/1
   def destroy
     @purchase.destroy
     redirect_to user_purchases_url, notice: t('was_successfully_destroyed_f', name: t('purchase'))
