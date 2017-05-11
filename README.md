@@ -7,8 +7,8 @@ The cloudtag's due system.
 ## Instalation
 
 ### Requirements
-######Ruby >= 2.2.2
-######postgresql >= 9.5
+###### Ruby >= 2.2.2
+###### postgresql >= 9.5
 
 Clone this repo, open a terminal, go to the repo's folder and run the following commands:
 
@@ -38,7 +38,7 @@ Just run rails using  `rails s`
 
 Enjoy!
 
-**note:** You need to start sidekiq (redis required) in order to use instant emails
+**Note:** You need to start sidekiq (redis required) in order to use instant emails
 
 ## Entity–relationship model:
 
