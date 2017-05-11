@@ -7,7 +7,7 @@ class DebtsControllerTest < ActionController::TestCase
     sign_in @user
     @debt.user.settings = {}
     @debt.user.settings['email_notification_enabled'] = true
-    @debt.user.settings['email_notification_frecuency'] = 'instantly'
+    @debt.user.settings['email_notification_frecuency'] = 'every_day'
     @debt.user.settings['language'] = 'en'
     @debt.user.save
   end

@@ -28,7 +28,6 @@ class DebtsController < ApplicationController
 
     if @debt.save
       if @user.settings['email_notification_enabled'] && @user.settings['email_notification_frecuency'] == 'instantly'
-        #UserMailer.instant_email(@debt.owner_id, @debt).deliver_now
         UserMailer.instant_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
       end
 

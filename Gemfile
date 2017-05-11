@@ -57,8 +57,3 @@ gem 'rails-controller-testing'
 gem 'codecov', :require => false, :group => :test
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
-
-group :test do
-  gem "minitest"
-  gem "fakeredis", :require => "fakeredis/minitest"
-end
