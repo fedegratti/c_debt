@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook]
+         :omniauthable, :omniauth_providers => [:facebook, :twitter]
   has_many :debts, dependent: :destroy
   has_many :relationships
   has_many :friends, through: :relationships
@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      elsif data = session["devise.twitter_data"] && session["devise.twitter_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
       end
     end
