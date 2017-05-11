@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
   #devise_for :users, controllers: { registrations: "users/registrations" }
+  get 'users/:user_id/friends/candidate' => 'friends#candidate'
+
   resources :users do
     resources :debts
+    resources :friends
     resources :expenses
     resources :purchases
   end
@@ -19,5 +22,10 @@ Rails.application.routes.draw do
 
   get 'settings' => 'settings#edit'
   post 'settings/update' => 'settings#update'
+
+  #get 'users/:user_id/friends/new' => 'friends#new'
+  post 'users/:user_id/friends/add/:friend_id' => 'friends#add'
+
+  get 'admin/reports' => 'reports#index'
 
 end

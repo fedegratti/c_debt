@@ -64,3 +64,5 @@ gem 'whenever', :require => false
 gem 'whenever-test'
 gem 'rails-controller-testing'
 gem 'codecov', :require => false, :group => :test
+gem 'omniauth-twitter'
+gem 'activerecord-session_store'

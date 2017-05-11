@@ -1,0 +1,54 @@
+<% if notice %>
+<div class="alert alert-dismissable alert-success">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <%= notice %>
+</div>
+<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="form-horizontal">
+      <div class="col-lg-4">
+        <div class="well bs-component">
+          <div class="form-group">
+            <label class="col-lg-4 control-label" for="friend_identification"><%= t('search_friend') %></label>
+
+            <div class="col-lg-7">
+              <input class="form-control ui-autocomplete-input" type="text" id="friend_identification" autocomplete="off">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-6">
+   <h1 id="tables"><%= t('cantidate_friends') %></h1>
+
+  <div class="bs-component">
+    <%= render 'friends_table', friends: @candidate_friends, candidate:true %>
+  </div>
+</div>
+
+<div class="col-lg-6">
+   <h1 id="tables"><%= t('current_friends') %></h1>
+
+  <div class="bs-component">
+    <%= render 'friends_table', friends: @user.friends, candidate: false %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#friend_identification').on('change input autocompleteselect',function(event, ui){
+      get_friends('/users/<%= @user.id %>/friends/candidate','clue='+$(this).val());
+    });
+
+  });
+  function get_friends(url,data)
+  {
+    $.get(url,data,function(data){$('#friends_table').html(data)});
+  }
+</script>
