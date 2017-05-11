@@ -57,7 +57,7 @@
       <% @user_debts_amount = 0 %>
       <% @user_debts.each do |debt| %>
         <tr class="success">
-          <td><strong><%= debt.owner.name %> owe you</strong></td>
+          <td><strong><%= debt.owner.name %> <%= t('owe_you') %></strong></td>
 
           <td>$ <%= debt.amount %></td>
           <% @user_debts_amount += debt.amount %>
@@ -73,4 +73,30 @@
       </td>
     </tr>
   </table>
+</div>
+<div class="col-lg-6">
+
+    <h1 id="tables"><%= t('listing_your_unpaid_expenses') %></h1>
+
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th><%= t('name') %></th>
+          <th><%= t('amount') %></th>
+          <th><%= t('paid') %></th>
+          <th><%= t('created_at') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @unpaid_expenses.each do |expense| %>
+          <tr>
+            <td><%= expense.name %></td>
+            <td><%= expense.amount %></td>
+            <td><%= expense.paid ? t('yes') : t('no') %></td>
+            <td><%= expense.created_at.strftime("%d/%m/%Y %H:%M hs") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>

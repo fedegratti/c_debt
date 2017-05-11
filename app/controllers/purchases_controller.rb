@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :set_purchase, only: [:show, :edit, :update, :pay, :destroy]
-  before_action :set_user, only: [:index, :edit, :create]
+  before_action :set_user, only: [:new, :index, :edit, :create]
   before_action :set_users, only: [:new, :edit]
   before_action :clean_select_multiple_params, only: [:create]
 
@@ -49,7 +49,7 @@ class PurchasesController < ApplicationController
         end
       end
 
-      redirect_to user_purchases_path(params.require :user_id), notice: t('was_successfully_created',name: t('purchase'))
+      redirect_to user_purchases_path(params.require :user_id), notice: t('was_successfully_created_f',name: t('purchase'))
     else
       render :new
     end
@@ -58,7 +58,7 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   def update
       if @purchase.update(purchase_params)
-        redirect_to user_purchases_url, notice: t('was_successfully_updated', name: t('purchase'))
+        redirect_to user_purchases_url, notice: t('was_successfully_updated_f', name: t('purchase'))
       else
         render :edit
       end
@@ -72,14 +72,16 @@ class PurchasesController < ApplicationController
         debt.paid = true
         debt.save
       end
-      redirect_to user_purchases_url, notice: t('was_marked_as_paid', name: t('purchase'))
+      redirect_to user_purchases_url, notice: t('was_marked_as_paid_f', name: t('purchase'))
+    else
+      redirect_to user_purchases_url, error: t('was_not_marked_as_paid_f', name: t('purchase'))
     end
   end
 
   # DELETE /purchases/1
   def destroy
     @purchase.destroy
-    redirect_to user_purchases_url, notice: t('was_successfully_destroyed', name: t('purchase'))
+    redirect_to user_purchases_url, notice: t('was_successfully_destroyed_f', name: t('purchase'))
   end
 
   private
@@ -98,7 +100,7 @@ class PurchasesController < ApplicationController
     end
 
     def set_users
-      @users = (User.where.not(id: current_user.id).where deleted_at: nil).pluck(:name, :id)
+      @users = (@user.friends.where.not(id: current_user.id).where(deleted_at: nil)).pluck(:name, :id)
     end
 
     def clean_select_multiple_params hash = params

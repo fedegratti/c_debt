@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       if @user.save
         sign_in(@user, scope: :user)
-        format.html { redirect_to @user, notice: t('was_successfully_created',name: t('user')) }
+        format.html { redirect_to @user, notice: t('was_successfully_created_m',name: t('user')) }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

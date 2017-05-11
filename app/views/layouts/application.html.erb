@@ -23,14 +23,22 @@
             <ul class="nav navbar-nav">
             <% if current_user != nil %>
                 <li id="debts">
-                    <%= link_to t('your_debts'), user_debts_path(current_user.id) %>
+                    <%= link_to t('debts'), user_debts_path(current_user.id) %>
                 </li>
                 <li id="purchases">
-                    <%= link_to t('your_purchases'), user_purchases_path(current_user.id) %>
+                    <%= link_to t('purchases'), user_purchases_path(current_user.id) %>
                 </li>
                 <li id="expenses">
-                    <%= link_to t('your_expenses'), user_expenses_path(current_user.id) %>
+                    <%= link_to t('expenses'), user_expenses_path(current_user.id) %>
                 </li>
+                <li id="friends">
+                    <%= link_to t('friends'), user_friends_path(current_user.id) %>
+                </li>
+                <% if !current_user.nil? && current_user.admin? %>
+                <li id="reports">
+                    <%= link_to t('reports'), admin_reports_path(current_user.id) %>
+                </li>
+                <% end %>
                 <li id="settings">
                     <%= link_to t('settings'), settings_path %>
                 </li>
@@ -49,7 +57,7 @@
                         <% end %>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><%= link_to t('Logout'), destroy_user_session_path, :method => :delete %></li>
+                        <li><%= link_to t('logout'), destroy_user_session_path, :method => :delete %></li>
                     </ul>
                 </li>
                 <% end %>

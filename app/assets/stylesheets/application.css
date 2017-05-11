@@ -245,6 +245,15 @@ a.btn.btn-primary.facebook:hover {
 a.btn.btn-primary.facebook:active {
     background-color: #29487d!important;
 }
+a.btn.btn-primary.twitter {
+    background-color: #1da1f2!important;
+}
+a.btn.btn-primary.twitter:hover {
+    background-color: #1d98f2!important;
+}
+a.btn.btn-primary.twitter:active {
+    background-color: #1da1f2!important;
+}
 label.col-lg-2.control-label.login {
     margin-top: 10px;
 }
@@ -259,7 +268,6 @@ label.col-lg-2.control-label.login {
 .btn-default:not(.btn-link):not(.btn-flat) {
     background-color: rgba(0, 0, 0, 0.2)!important;
 }
-
 .btn-primary:not(.btn-link):not(.btn-flat) {
     background-color: #0f9d58!important;
 }
@@ -273,4 +281,10 @@ label.col-lg-2.control-label.login {
     .navbar .navbar-brand {
         padding-top: 5px!important;
     }
+}
+.friend_image {
+    height: 17px;
+}
+a {
+    cursor: auto;
 }

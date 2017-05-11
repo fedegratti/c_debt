@@ -1,7 +1,7 @@
 class DebtsController < ApplicationController
   before_action :set_debt, only: [:show, :edit, :update, :pay, :destroy]
+  before_action :set_user, only: [:new, :update, :index, :edit, :create]
   before_action :set_users, only: [:new, :edit, :create, :update]
-  before_action :set_user, only: [:index, :edit, :create]
 
   # GET /debts
   def index
@@ -32,7 +32,7 @@ class DebtsController < ApplicationController
         UserMailer.instant_email(@debt.owner_id, @debt).deliver_later unless @debt.owner_id == current_user.id
       end
 
-      redirect_to user_debts_path(params.require :user_id), notice: t('was_successfully_created',name: t('debt'))
+      redirect_to user_debts_path(params.require :user_id), notice: t('was_successfully_created_f',name: t('debt'))
     else
       render :new
     end
@@ -41,7 +41,7 @@ class DebtsController < ApplicationController
   # PATCH/PUT /debts/1
   def update
       if @debt.update(debt_params)
-        redirect_to user_debts_url, notice: t('was_successfully_updated', name: t('debt'))
+        redirect_to user_debts_url, notice: t('was_successfully_updated_f', name: t('debt'))
       else
         render :edit
       end
@@ -51,16 +51,16 @@ class DebtsController < ApplicationController
   def pay
     @debt.paid = true
     if @debt.save
-      redirect_to user_debts_url, notice: t('was_marked_as_paid', name: t('debt'))
+      redirect_to user_debts_url, notice: t('was_marked_as_paid_f', name: t('debt'))
     else
-      redirect_to user_debts_url, error: t('was_not_marked_as_paid', name: t('debt'))
+      redirect_to user_debts_url, error: t('was_not_marked_as_paid_f', name: t('debt'))
     end
   end
 
   # DELETE /debts/1
   def destroy
     @debt.destroy
-    redirect_to user_debts_url, notice: t('was_successfully_destroyed', name: t('debt'))
+    redirect_to user_debts_url, notice: t('was_successfully_destroyed_f', name: t('debt'))
   end
 
   private
@@ -79,6 +79,6 @@ class DebtsController < ApplicationController
     end
 
     def set_users
-      @users = (User.where deleted_at: nil).pluck(:name, :id)
+      @users = (@user.friends.where deleted_at: nil).pluck(:name, :id)
     end
 end

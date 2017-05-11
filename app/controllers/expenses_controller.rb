@@ -22,7 +22,7 @@ class ExpensesController < ApplicationController
     @expense.user_id = params.require :user_id
 
     if @expense.save
-      redirect_to user_expenses_path(params.require :user_id), notice: t('was_successfully_created',name: t('expense'))
+      redirect_to user_expenses_path(params.require :user_id), notice: t('was_successfully_created_m',name: t('expense'))
     else
       render :new
     end
@@ -31,24 +31,26 @@ class ExpensesController < ApplicationController
   # PATCH/PUT /expenses/1
   def update
       if @expense.update(expense_params)
-        redirect_to user_expenses_url, notice: t('was_successfully_updated', name: t('expense'))
+        redirect_to user_expenses_url, notice: t('was_successfully_updated_m', name: t('expense'))
       else
         render :edit
       end
   end
 
-  # GET /debts/1/pay
+  # GET /expenses/1/pay
   def pay
     @expense.paid = true
     if @expense.save
-      redirect_to user_expenses_url, notice: t('was_marked_as_paid', name: t('expense'))
+      redirect_to user_expenses_url, notice: t('was_marked_as_paid_m', name: t('expense'))
+    else
+      redirect_to user_expenses_url, error: t('was_not_marked_as_paid_m', name: t('expense'))
     end
   end
 
   # DELETE /expenses/1
   def destroy
     @expense.destroy
-    redirect_to user_expenses_url, notice: t('was_successfully_destroyed', name: t('expense'))
+    redirect_to user_expenses_url, notice: t('was_successfully_destroyed_m', name: t('expense'))
   end
 
   private
