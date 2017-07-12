@@ -4,7 +4,8 @@ class ExpensesController < ApplicationController
 
   # GET /expenses
   def index
-    @expenses = Expense.where user_id: current_user.id
+    @paid_expenses = Expense.where user_id: current_user.id, paid: true
+    @unpaid_expenses = Expense.where user_id: current_user.id, paid: false
   end
 
   # GET /expenses/new
