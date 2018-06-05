@@ -285,6 +285,12 @@ label.col-lg-2.control-label.login {
 .friend_image {
     height: 17px;
 }
-a {
-    cursor: auto;
+.table > tbody + tbody {
+  border-top: 2px solid #bbb;
+}
+.table > thead > tr > th {
+   border-bottom: none;
+}
+.border-left {
+    border-left: 1px solid;
 }
