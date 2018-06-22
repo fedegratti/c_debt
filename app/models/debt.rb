@@ -9,5 +9,4 @@ class Debt < ActiveRecord::Base
 
   scope :created_after, ->(time) { where("created_at > ?", time) }
   scope :paid, ->(paid) { where(paid:paid) }
-
 end

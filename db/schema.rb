@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511050223) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20180510154001) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -24,9 +21,9 @@ ActiveRecord::Schema.define(version: 20170511050223) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
   create_table "debts", force: :cascade do |t|
@@ -38,8 +35,8 @@ ActiveRecord::Schema.define(version: 20170511050223) do
     t.datetime "updated_at",                  null: false
     t.integer  "purchase_id"
     t.boolean  "paid",        default: false
-    t.index ["purchase_id"], name: "index_debts_on_purchase_id", using: :btree
-    t.index ["user_id"], name: "index_debts_on_user_id", using: :btree
+    t.index ["purchase_id"], name: "index_debts_on_purchase_id"
+    t.index ["user_id"], name: "index_debts_on_user_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -49,25 +46,25 @@ ActiveRecord::Schema.define(version: 20170511050223) do
     t.boolean  "paid",       default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["user_id"], name: "index_expenses_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "purchases", force: :cascade do |t|
     t.string   "name"
     t.integer  "amount"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "paid",       default: false
+    t.boolean  "paid"
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "relationships", id: false, force: :cascade do |t|
     t.integer "user_id",   null: false
     t.integer "friend_id", null: false
-    t.index ["friend_id"], name: "index_relationships_on_friend_id", using: :btree
-    t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
+    t.index ["friend_id"], name: "index_relationships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_relationships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -75,8 +72,8 @@ ActiveRecord::Schema.define(version: 20170511050223) do
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
-    t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,11 +95,9 @@ ActiveRecord::Schema.define(version: 20170511050223) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
-    t.json     "settings"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.         "settings"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "debts", "purchases"
-  add_foreign_key "purchases", "users"
 end
