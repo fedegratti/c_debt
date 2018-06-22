@@ -38,40 +38,64 @@
   <table class="table table-striped table-hover ">
     <thead>
       <tr>
+
+      </tr>
+    </thead>
+    <% @user_debts_amount = 0 %>
+    <% @user_owns_amount = 0 %>
+    <tbody>
+      <tr>
+        <th></th>
+        <th><%= t('owe_you') %></th>
+        <th><%= t('you_owe') %></th>
+        <th><%= t('total') %></th>
+      </tr>
+      <% for @user in @users %>
+        <% @user_debt_amount = 0 %>
+        <tr>
+          <td><%= @user.name %></td>
+          <td class="success"> $<%= @user_debt_amount += @user_debts.find{ |debt| debt.owner_id == @user.id }&.amount.to_i %></td>
+          <% @user_debts_amount += @user_debt_amount %></td>
+          <% @own_amount = @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount} %>
+          <% @user_owns_amount += @own_amount %></td>
+          <% if @own_amount.positive? %>
+            <td class="danger"> -$<%= @own_amount %></td>
+          <% else %>
+            <td> $<%= @own_amount %></td>
+          <% end %>
+          <% @balance = @user_debt_amount - @own_amount %>
+          <% if @balance.positive? %>
+            <td class="border-left success">$<%= @balance %></td>
+          <% elsif @balance.negative? %>
+            <td class="border-left danger">-$<%= @balance.abs %></td>
+          <% else %>
+            <td class="border-left">$<%= @balance %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+    <thead>
+      <tr>
         <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
-      <% for @user in @users %>
-        <tr class="danger">
-          <td>
-            <strong><%= t('you_owe', name: @user.name) %></strong>
-          </td>
-          <td>
-            $ <%= @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount} %>
-          </td>
-        </tr>
-      <% end %>
+      <tr>
+        <td>
+          <strong><%= t('total_debts_amount') %></strong>
+        </td>
+        <td></td>
+        <td></td>
+        <% @balance = @user_debts_amount - @user_owns_amount %>
+        <% if @balance.positive? %>
+          <td class="border-left success">$<%= @balance %></td>
+        <% elsif @balance.negative? %>
+          <td class="border-left danger">-$<%= @balance.abs %></td>
+        <% else %>
+          <td class="border-left">$<%= @balance %></td>
+        <% end %>
+      </tr>
     </tbody>
-    <tbody>
-      <% @user_debts_amount = 0 %>
-      <% @user_debts.each do |debt| %>
-        <tr class="success">
-          <td><strong><%= debt.owner.name %> <%= t('owe_you') %></strong></td>
-
-          <td>$ <%= debt.amount %></td>
-          <% @user_debts_amount += debt.amount %>
-        </tr>
-      <% end %>
-    </tbody>
-    <tr>
-      <td>
-        <strong><%= t('total_debts_amount') %></strong>
-      </td>
-      <td>
-        $ <%= (@users.inject(0) {|total_amount, user| user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount } + total_amount}) - @user_debts_amount %>
-      </td>
-    </tr>
   </table>
 </div>
 <div class="col-lg-6">
