@@ -23,14 +23,17 @@ namespace :cdebt do
 
         basename = File.basename(file, '.rb').capitalize
 
-        byebug
         formatted_fields = fields.to_a.map { |f| f.join(':') }.join(' ')
         references = add_references(basename)
-        puts references
 
-        # puts formatted_fields
-        # sh "bin/rails generate migration Create#{basename.pluralize}"\
-        #    " #{formatted_fields} #{references} created_at:datetime updated_at:datetime --force"
+        unless formatted_fields.empty? && references.empty?
+          puts "Formatted fields: #{formatted_fields}"
+          puts "References: #{references}"
+          puts 'va'
+
+          sh "bin/rails generate migration Create#{basename.pluralize}"\
+             " #{formatted_fields} #{references} created_at:datetime updated_at:datetime --force"
+        end
       end
     end
 
@@ -72,7 +75,9 @@ def add_references(basename)
 
     methods.each do |relation, params|
       if relation == 'belongs_to'
-        output << "#{params.join}:references"
+        params.each do |param|
+          output << "#{param}:references "
+        end
       end
     end
   end

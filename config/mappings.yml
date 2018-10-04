@@ -4,13 +4,6 @@ Debt:
     - user
     - owner
     - purchase
-User:
-  has_many:
-    - debts
-    - dependent: destroy
-    - relationships
-    - friends
-    - expenses
 Purchase:
   has_many:
     - debts
