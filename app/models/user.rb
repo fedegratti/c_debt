@@ -1,11 +1,20 @@
-class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-         :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook, :twitter]
-  has_many :debts, dependent: :destroy
-  has_many :relationships
-  has_many :friends, through: :relationships
-  has_many :expenses
+class User
+  field :name,                    type: String
+  field :email,                   type: String
+  field :encrypted_password,      type: String
+  field :reset_password_token,    type: String
+  field :reset_password_sent_at,  type: Datetime
+  field :remember_created_at,     type: Datetime
+  field :sign_in_count,           type: Integer
+  field :current_sign_in_at,      type: Datetime
+  field :last_sign_in_at,         type: Datetime
+  field :current_sign_in_ip,      type: String
+  field :last_sign_in_ip,         type: String
+  field :admin,                   type: Boolean
+  field :provider,                type: String
+  field :uid,                     type: String
+  field :image,                   type: String
+  field :settings,                type: String
 
   def is_deleted?
     !!deleted_at
