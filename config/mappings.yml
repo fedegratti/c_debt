@@ -15,3 +15,14 @@ Relationship:
     - user
   belongs_to:
     - friend
+Expense:
+  belongs_to:
+    - user
+User:
+  has_many:
+    - debts
+    - dependent: destroy
+    - relationships
+    - friends
+    - through: relationships
+    - expenses

@@ -2,6 +2,8 @@ puts 'Creating Classes and relations'
 
 mappings = YAML.load_file("#{Rails.root}/config/mappings.yml")
 
+migrates = Dir['db/migrate/**/*.rb']
+
 mappings.each do |model, methods|
   eval("#{model} = Class.new ActiveRecord::Base")
 
@@ -23,9 +25,44 @@ mappings.each do |model, methods|
   end
 
   associations.uniq.each do |association|
-    model.constantize.class_eval association
-
     puts model.constantize
     puts "\t"+ association
+
+    model.constantize.class_eval association
+  end
+
+
+  # Skip class content injection if migration is missing
+  if migrates.count > 0
+
+    # Model file
+    model_path = "app/models/#{model}.rb"
+
+    File.open(model_path, 'r') do |file|
+      class_content = ''
+
+      file.each_line do |line|
+
+        # Ignore if the line is the name of the model
+        next if line.lstrip.start_with?('class')
+
+        # Ignore if the line is a field of the model
+        next if line.lstrip.start_with?('field')
+
+        # # Skip devise injection if migration is missing
+        # if migrates.count > 0
+        #   break
+        # end
+
+        # Ignore if the line is the last one
+        next if line.start_with?('end')
+
+        puts model.constantize
+        puts "\t"+ line
+        class_content += line
+      end
+
+      model.constantize.class_eval class_content
+    end
   end
 end
