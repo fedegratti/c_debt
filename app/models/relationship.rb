@@ -1,4 +1,2 @@
-class Relationship < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :friend
+class Relationship
 end

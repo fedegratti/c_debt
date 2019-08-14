@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
   get 'users/:user_id/friends/candidate' => 'friends#candidate'
 
   resources :users do
@@ -11,6 +10,12 @@ Rails.application.routes.draw do
     resources :expenses
     resources :purchases
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'users/:user_id/debts/:id/pay' => 'debts#pay'
   get 'users/:user_id/expenses/:id/pay' => 'expenses#pay'

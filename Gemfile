@@ -27,13 +27,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.0.1'
 gem 'bootstrap-material-design'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  #gem 'byebug'
+  gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 end
@@ -57,3 +56,6 @@ gem 'rails-controller-testing'
 gem 'codecov', :require => false, :group => :test
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'

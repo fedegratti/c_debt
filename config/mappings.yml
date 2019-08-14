@@ -1,0 +1,32 @@
+---
+Debt:
+  belongs_to:
+    - user
+    - owner
+    - purchase
+Purchase:
+  has_many:
+    - debts
+    - dependent: destroy
+  belongs_to:
+    - user
+Relationship:
+  belongs_to:
+    - user
+    - friend
+Expense:
+  belongs_to:
+    - user
+UserSetting:
+  belongs_to:
+    - user
+User:
+  has_many:
+    - debts
+    - dependent: destroy
+    - relationships
+    - friends
+    - through: relationships
+    - expenses
+    - user_settings
+
