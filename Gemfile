@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '5.0.2'
 
 #postgresql
-gem 'pg'
+# gem 'pg'
 
 #activeadmin
 gem 'activeadmin', '~> 1.0.0'

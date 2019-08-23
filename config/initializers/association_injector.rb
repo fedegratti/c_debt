@@ -2,13 +2,21 @@ puts 'Creating Classes and relations'
 
 mappings = YAML.load_file("#{Rails.root}/config/mappings.yml")
 
-migrates = Dir['db/migrate/**/*.rb']
+# migrates = Dir['db/migrate/**/*.rb']
 
 mappings.each do |model, methods|
-  eval("#{model} = Class.new ActiveRecord::Base")
-
   associations = []
+
   methods.each do |relation, params|
+
+    if relation == 'child_of'
+      eval("#{model} = Class.new #{params.first.camelize}")
+      next
+    else
+      unless Object.constants.include?(model.to_sym)
+        eval("#{model} = Class.new ActiveRecord::Base")
+      end
+    end
 
     sentence = ''
 

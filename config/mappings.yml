@@ -29,4 +29,16 @@ User:
     - through: relationships
     - expenses
     - user_settings
+Owner:
+  child_of:
+    - user
+  has_one:
+    - debt
+Friend:
+  child_of:
+    - user
+  has_many:
+    - relationships
+    - users
+    - through: relationships
 

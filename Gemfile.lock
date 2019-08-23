@@ -311,7 +311,6 @@ DEPENDENCIES
   jquery-rails
   omniauth-facebook
   omniauth-twitter
-  pg
   rails (= 5.0.2)
   rails-controller-testing
   rails_12factor

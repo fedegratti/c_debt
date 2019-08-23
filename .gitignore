@@ -22,3 +22,5 @@
 
 # Ignore coverage folder
 /coverage
+.byebug_history
+.DS_Store

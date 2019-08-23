@@ -32,7 +32,6 @@ namespace :cdebt do
         unless formatted_fields.empty? && references.empty?
           puts "Formatted fields: #{formatted_fields}"
           puts "References: #{references}"
-          puts 'va'
 
           sh "bin/rails generate migration Create#{model_name.pluralize}"\
              " #{formatted_fields} #{references} created_at:datetime updated_at:datetime --force"
@@ -49,7 +48,6 @@ def add_references(basename)
   mappings = YAML.load_file("#{Rails.root}/config/mappings.yml")
 
   mappings.each do |model, methods|
-    puts basename
     next unless model == basename
 
     methods.each do |relation, params|
