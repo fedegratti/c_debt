@@ -1,9 +1,12 @@
-@user_fede = User.create!({name: "Fede",
-              email: "fede@test.com",
-              password: "12345678",
-              password_confirmation: "12345678",
-              admin: true
-             })
+@user_fede = User.create!(
+  {
+    name: "Fede",
+    email: "fede@test.com",
+    password: "12345678",
+    password_confirmation: "12345678",
+    admin: true
+  }
+)
 
 UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @user_fede)
 UserSetting.create!(key: 'email_notification_frecuency', value: 'instantly', user: @user_fede)

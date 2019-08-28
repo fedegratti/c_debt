@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user = User.new(user_params)
+    @user.admin = false if @user.admin.blank?
     @user.settings = {} if @user.settings.nil?
     @user.settings[:email_notification_enabled] = true
     @user.settings[:email_notification_frecuency] = 'instantly'
