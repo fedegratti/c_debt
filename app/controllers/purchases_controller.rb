@@ -26,7 +26,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
     @purchase.user_id = params.require :user_id
-
+    @purchase.paid = false
     if @purchase.save
       @to_users = (params.require :purchase)[:user]
 

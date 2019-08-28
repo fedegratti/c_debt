@@ -25,7 +25,7 @@ class DebtsController < ApplicationController
   def create
     @debt = Debt.new(debt_params)
     @debt.user_id = params.require :user_id
-
+    @debt.paid = false
     if @debt.save
       if @debt.owner.settings['email_notification_enabled'] && @debt.owner.settings['email_notification_frecuency'] == 'instantly'
 

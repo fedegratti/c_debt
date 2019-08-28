@@ -21,7 +21,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @expense.user_id = params.require :user_id
-
+    @expense.paid = false
     if @expense.save
       redirect_to user_expenses_path(params.require :user_id), notice: t('was_successfully_created_m',name: t('expense'))
     else
