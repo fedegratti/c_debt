@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
 
   # GET /users
   def index
-    @users = User.where.not(id: current_user.id).where deleted_at: nil
+    @users = User.current_users.reject{|user| user.id == current_user.id }
   end
 
 end

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.where deleted_at: nil
+    @users = User.current_users
   end
 
   # GET /users/1

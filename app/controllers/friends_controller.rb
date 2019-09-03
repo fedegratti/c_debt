@@ -37,7 +37,7 @@ class FriendsController < ApplicationController
   end
 
   def set_candidate_friends
-    @candidate_friends = Friend.where(id: (User.where(deleted_at: nil).pluck(:id) - @user.friends.pluck(:id))).where.not(id: @user.id)
+    @candidate_friends = Friend.candidate_friends(@user)
   end
 
 end

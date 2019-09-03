@@ -6,13 +6,13 @@ class HomeController < ApplicationController
     cookies[:language] = current_user.settings['language']
     set_locale
 
-    @debts = Debt.where owner_id: current_user.id, paid: false
+    @debts = Debt.owner_debts(current_user.id)
     @users = current_user.friends
 
     @user_debts = Debt.select('owner_id, SUM(amount) as amount').where(user_id: current_user.id).paid(false).group(:owner_id)
-    @user_expenses = current_user.expenses.in_last_month
+    @user_expenses = Expense.in_last_month(current_user.expenses)
 
-    @unpaid_expenses = Expense.where(user_id: current_user.id).paid(false).in_last_month
+    @unpaid_expenses = Expense.in_last_month(Expense.unpaid_expenses(current_user.id))
   end
 
 end

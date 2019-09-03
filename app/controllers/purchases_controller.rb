@@ -6,7 +6,7 @@ class PurchasesController < ApplicationController
 
   # GET /users/1/purchases
   def index
-    @purchases = Purchase.where user_id: current_user.id, paid: false
+    @purchases = Purchase.user_purchases(current_user.id)
   end
 
   # GET /users/1/purchases/1
@@ -100,7 +100,7 @@ class PurchasesController < ApplicationController
     end
 
     def set_users
-      @users = (@user.friends.where.not(id: current_user.id).where(deleted_at: nil)).pluck(:name, :id)
+      @users = @user.current_friends.reject{|user| user.id == current_user.id }.pluck(:name, :id)
     end
 
     def clean_select_multiple_params hash = params

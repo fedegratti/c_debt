@@ -5,7 +5,7 @@ class DebtsController < ApplicationController
 
   # GET /debts
   def index
-    @debts = Debt.where user_id: current_user.id, paid: false
+    @debts = Debt.user_debts(current_user.id)
   end
 
   # GET /debts/1
@@ -81,6 +81,6 @@ class DebtsController < ApplicationController
     end
 
     def set_users
-      @users = (@user.friends.where deleted_at: nil).pluck(:name, :id)
+      @users = @user.current_friends.pluck(:name, :id)
     end
 end

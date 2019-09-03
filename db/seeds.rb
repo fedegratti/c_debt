@@ -53,10 +53,10 @@ UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @use
 UserSetting.create!(key: 'email_notification_frecuency', value: 'instantly', user: @user_santi)
 UserSetting.create!(key: 'language', value: 'en', user: @user_santi)
 
-Expense.create!([{name: "Monitor", amount: 2000, user_id: @user_fede.id},
+Expense.create!([{name: "Monitor", amount: 2000, user_id: @user_fede.id, paid: false},
                  {name: "Memoria", amount: 900, user_id: @user_fede.id, paid: true}])
 
-Debt.create!([{title: "Bar viernes", amount: 200, owner_id: @user_caco.id, user_id: @user_fede.id},
-              {title: "Bar viernes", amount: 200, owner_id: @user_juanma.id, user_id: @user_fede.id},
+Debt.create!([{title: "Bar viernes", amount: 200, owner_id: @user_caco.id, user_id: @user_fede.id, paid: false},
+              {title: "Bar viernes", amount: 200, owner_id: @user_juanma.id, user_id: @user_fede.id, paid: false},
               {title: "Gimnasio", amount: 80, owner_id: @user_santi.id, user_id: @user_fede.id, paid: true},
-              {title: "Cafe", amount: 50, owner_id: @user_fede.id, user_id: @user_caco.id},])
+              {title: "Cafe", amount: 50, owner_id: @user_fede.id, user_id: @user_caco.id, paid: false},])

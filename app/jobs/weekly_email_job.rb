@@ -10,7 +10,7 @@ class WeeklyEmailJob < ApplicationJob
     users.each do |user|
       I18n.locale = user.settings['language']
 
-      debts = Debt.where("owner_id = #{user.id}").paid(false).created_after(1.week.ago)
+      debts = Debt.owner_debts(user.id).created_after(1.week.ago)
       UserMailer.weekly_email(user.id, debts).deliver_now unless debts.empty?
     end
 
