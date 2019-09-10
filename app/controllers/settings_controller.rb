@@ -13,10 +13,9 @@ class SettingsController < ApplicationController
 
   # PATCH/PUT /settings
   def update
-    @user.settings = {} if @user.settings.nil?
-    @user.settings[:email_notification_enabled] = params[:email_notification_enabled].to_b
-    @user.settings[:email_notification_frecuency] = params[:email_notification_frecuency]
-    @user.settings[:language] = params[:language]
+    @user.settings = {key: 'email_notification_enabled', value: params[:email_notification_enabled].to_b}
+    @user.settings = {key: 'email_notification_frecuency', value: params[:email_notification_frecuency]}
+    @user.settings = {key: 'language', value: params[:language]}
     @user.save! # saves new or changed settings, too
     cookies[:language] = params[:language]
     set_locale
