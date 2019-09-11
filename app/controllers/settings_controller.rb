@@ -6,14 +6,14 @@ class SettingsController < ApplicationController
   def edit
     unless @user.settings.nil?
       @language = @user.settings['language']
-      @email_notification_enabled = @user.settings['email_notification_enabled']
+      @email_notification_enabled = @user.settings['email_notification_enabled'].to_b
       @email_notification_frecuency = @user.settings['email_notification_frecuency']
     end
   end
 
   # PATCH/PUT /settings
   def update
-    @user.settings = {key: 'email_notification_enabled', value: params[:email_notification_enabled].to_b}
+    @user.settings = {key: 'email_notification_enabled', value: params[:email_notification_enabled]}
     @user.settings = {key: 'email_notification_frecuency', value: params[:email_notification_frecuency]}
     @user.settings = {key: 'language', value: params[:language]}
     @user.save! # saves new or changed settings, too
