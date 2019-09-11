@@ -10,6 +10,12 @@ class User
   field :image,                   type: String
   field :deleted_at,              type: Datetime
 
+  def settings=(arguments)
+    new_setting = user_settings.find_or_create_by(key: arguments[:key])
+    new_setting.value = arguments[:value]
+    new_setting.save!
+  end
+
   def settings
     user_settings.map { |setting| { setting.key => setting.value } }.reduce(:merge)
   end
