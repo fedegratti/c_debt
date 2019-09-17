@@ -49,7 +49,7 @@
         <div class="form-group" id="email_notification_frecuency_wrapper">
           <%= label_tag :email_notification_frecuency,t(:email_notification_frecuency), class:'col-lg-4 control-label' %>
           <div class="col-lg-8">
-            <% @email_notification_frecuencies = options_for_select([[t('instantly'), 'instantly'], [t('every_day'), 'every_day'], [t('every_week'), 'every_week']],@email_notification_frecuency) %>
+            <% @email_notification_frecuencies = options_for_select([[t('instantly'), 'instantly'], [t('every_day'), 'every_day'], [t('every_week'), 'every_week'], [t('every_month'), 'every_month']],@email_notification_frecuency) %>
             <%= select_tag :email_notification_frecuency, @email_notification_frecuencies, { class: "form-control", required: true } %>
           </div>
         </div>

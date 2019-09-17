@@ -4,8 +4,7 @@ class WeeklyEmailJob < ApplicationJob
   def perform(*args)
     puts ":: Weekly Email Job Start ::"
 
-    users = User.where("CAST(settings->>'email_notification_enabled' AS BOOL) = true
-                        AND settings->>'email_notification_frecuency' = 'every_week'")
+    users = User.notification_enabled_users('every_week')
 
     users.each do |user|
       I18n.locale = user.settings['language']

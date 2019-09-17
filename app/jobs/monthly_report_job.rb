@@ -4,7 +4,7 @@ class MonthlyReportJob < ApplicationJob
   def perform(*args)
     puts ":: Monthly Report Job Start ::"
 
-    users = User.where("CAST(settings->>'email_notification_enabled' AS BOOL) = true")
+    users = User.notification_enabled_users('every_month')
 
     users.each do |user|
       I18n.locale = user.settings['language']

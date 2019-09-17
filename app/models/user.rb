@@ -47,4 +47,9 @@ class User
     User.select { |user| user.deleted_at == nil }
   end
 
+  def self.notification_enabled_users(frecuency)
+    User.select { |user| user.settings['email_notification_enabled'].to_b == true &&
+                         user.settings['email_notification_frecuency'] == frecuency }
+  end
+
 end

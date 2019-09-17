@@ -50,7 +50,7 @@ UserSetting.create!(key: 'language', value: 'es', user: @user_juanma)
               })
 
 UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @user_santi)
-UserSetting.create!(key: 'email_notification_frecuency', value: 'instantly', user: @user_santi)
+UserSetting.create!(key: 'email_notification_frecuency', value: 'every_month', user: @user_santi)
 UserSetting.create!(key: 'language', value: 'en', user: @user_santi)
 
 Expense.create!([{name: "Monitor", amount: 2000, user_id: @user_fede.id, paid: false},

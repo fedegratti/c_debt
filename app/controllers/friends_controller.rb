@@ -10,7 +10,7 @@ class FriendsController < ApplicationController
   # GET /users/1/friends/candidate
   def candidate
     clue = params[:clue]
-    @candidate_friends = @candidate_friends.where("name like ? or email like ?", "%#{clue}%", "%#{clue}%")
+    @candidate_friends = @candidate_friends.select { |friend| friend.name.include?(clue) || friend.email.include?(clue) }
     render :layout => false
   end
 

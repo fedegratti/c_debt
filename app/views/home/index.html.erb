@@ -54,7 +54,7 @@
         <% @user_debt_amount = 0 %>
         <tr>
           <td><%= @user.name %></td>
-          <td class="success"> $<%= @user_debt_amount += @user_debts.find{ |debt| debt.owner_id == @user.id }&.amount.to_i %></td>
+          <td class="success"> $<%= @user_debt_amount += @user_debts.select{ |debt| debt.owner_id == @user.id }.inject(0){|amount, debt| amount + debt.amount } %></td>
           <% @user_debts_amount += @user_debt_amount %></td>
           <% @own_amount = @user.debts.inject(0) {|amount, debt| (debt.owner_id == current_user.id && !debt.paid) ? amount + debt.amount : amount} %>
           <% @user_owns_amount += @own_amount %></td>
