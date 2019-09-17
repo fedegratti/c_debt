@@ -12,7 +12,7 @@ class MonthlyReportJob < ApplicationJob
       paid_expenses = Expense.in_last_month(Expense.paid_expenses(user.id))
       unpaid_expenses = Expense.in_last_month(Expense.unpaid_expenses(user.id))
 
-      debts = Debt.owner_debts(user.id).created_after(1.month.ago)
+      debts = Debt.owner_debts(user.id).select{ |debt| debt.created_at > 1.month.ago }
 
       unless debts.empty? && paid_expenses.empty? && unpaid_expenses.empty?
         UserMailer.monthly_report_email(user.id, debts, paid_expenses, unpaid_expenses).deliver_now

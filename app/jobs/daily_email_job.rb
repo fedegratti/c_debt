@@ -9,7 +9,7 @@ class DailyEmailJob < ApplicationJob
     users.each do |user|
       I18n.locale = user.settings['language']
 
-      debts = Debt.owner_debts(user.id).created_after(1.day.ago)
+      debts = Debt.owner_debts(user.id).select{ |debt| debt.created_at > 1.day.ago }
       UserMailer.daily_email(user.id, debts).deliver_now unless debts.empty?
     end
 
