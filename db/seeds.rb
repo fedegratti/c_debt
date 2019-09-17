@@ -10,7 +10,27 @@
 
 UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @user_fede)
 UserSetting.create!(key: 'email_notification_frecuency', value: 'instantly', user: @user_fede)
-UserSetting.create!(key: 'language', value: 'en', user: @user_fede)
+UserSetting.create!(key: 'language', value: 'es', user: @user_fede)
+
+@user_gianni = User.create!({name: "Gianni",
+              email: "gianni@test.com",
+              password: "12345678",
+              password_confirmation: "12345678"
+             })
+
+UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @user_gianni)
+UserSetting.create!(key: 'email_notification_frecuency', value: 'every_day', user: @user_gianni)
+UserSetting.create!(key: 'language', value: 'es', user: @user_gianni)
+
+@user_euge = User.create!({name: "Eugenia",
+              email: "euge@test.com",
+              password: "12345678",
+              password_confirmation: "12345678"
+             })
+
+UserSetting.create!(key: 'email_notification_enabled', value: 'true', user: @user_euge)
+UserSetting.create!(key: 'email_notification_frecuency', value: 'every_day', user: @user_euge)
+UserSetting.create!(key: 'language', value: 'es', user: @user_euge)
 
 @user_caco = User.create!({name: "Caco",
               email: "caco@test.com",
@@ -60,3 +80,8 @@ Debt.create!([{title: "Bar viernes", amount: 200, owner_id: @user_caco.id, user_
               {title: "Bar viernes", amount: 200, owner_id: @user_juanma.id, user_id: @user_fede.id, paid: false},
               {title: "Gimnasio", amount: 80, owner_id: @user_santi.id, user_id: @user_fede.id, paid: true},
               {title: "Cafe", amount: 50, owner_id: @user_fede.id, user_id: @user_caco.id, paid: false},])
+
+@user_fede.friends << Friend.find(@user_caco.id)
+@user_fede.friends << Friend.find(@user_juanma.id)
+@user_fede.friends << Friend.find(@user_santi.id)
+@user_fede.save
