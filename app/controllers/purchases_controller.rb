@@ -27,19 +27,19 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     @purchase.user_id = params.require :user_id
     @purchase.paid = false
-    if @purchase.save
+
+    if @purchase.save!
       @to_users = (params.require :purchase)[:user]
 
       @to_users.each do |user_id|
         @debt = Debt.new()
+        @debt.paid = false
         @debt.user_id = params.require :user_id
-
         @debt.title = (params.require :purchase)[:name]
         @debt.amount = ((Float((params.require :purchase)[:amount]) / (@to_users.size + 1))).ceil
-
         @debt.owner_id = Integer (user_id)
         @debt.purchase_id = @purchase.id
-        @debt.save
+        @debt.save!
 
         owner_user = User.find(user_id)
 

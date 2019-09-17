@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  get 'signup', to: 'users#new', as: 'signup'
+  # get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  delete 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'users/:user_id/debts/:id/pay' => 'debts#pay'
   get 'users/:user_id/expenses/:id/pay' => 'expenses#pay'

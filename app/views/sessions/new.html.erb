@@ -1,15 +1,35 @@
 <p id="alert"><%= alert %></p>
-<h1>Login</h1>
-<%= form_tag sessions_path do |form| %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+
+<div class="col-lg-12">
+  <h1><%= t('login') %></h1>
+</div>
+
+<div class="col-lg-6">
+  <div class="well bs-component">
+    <%= form_tag sessions_path, class: 'form-horizontal' do |f| %>
+      <fieldset>
+        <legend></legend>
+
+        <div class="form-group">
+          <%= label_tag t(:email), nil, class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= text_field_tag :email, nil, class:'form-control', placeholder: t(:email), required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag t(:password), nil, class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= password_field_tag :password, nil, class:'form-control', placeholder: t(:password), required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" class="btn btn-primary"><%= t(:login) %></button>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
   </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Login" %>
-  </div>
-<% end %>
+</div>

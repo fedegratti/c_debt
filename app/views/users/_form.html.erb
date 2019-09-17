@@ -1,37 +1,68 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% if @user.errors.any? %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this debt from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+  <%= notice %>
+</div>
+<script type="text/javascript">
+  $( document ).ready(function()
+  {
+    $('.field_with_errors').css ("display","block");
+    $('.field_with_errors').css ("background-color","#eee");
+    $('.field_with_errors').css ("border-radius","3px");
+  });
+</script>
+<% end %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="col-lg-6">
+  <div class="well bs-component">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend></legend>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+        <div class="form-group">
+          <%= f.label t(:name), class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.text_field :name, class:'form-control', placeholder: t(:name), required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:email), class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.text_field :email, class:'form-control', placeholder: t(:email), required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:password), class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.password_field :password, class:'form-control', placeholder: t(:password), required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:password_confirmation), class:'col-lg-2 control-label' %>
+          <div class="col-lg-10">
+            <%= f.password_field :password_confirmation, class:'form-control', placeholder: t(:password_confirmation), required: true %>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= link_to t(:cancel), '/', class:"btn btn-default" %>
+            <button type="submit" class="btn btn-primary"><%= t(:submit) %></button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
   </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>
