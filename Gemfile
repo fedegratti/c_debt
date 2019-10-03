@@ -4,9 +4,6 @@ source 'https://rubygems.org'
 gem 'rails', '5.0.2'
 gem 'puma', '~> 3.7'
 
-#postgresql
-# gem 'pg'
-
 #activeadmin
 gem 'activeadmin', '~> 1.0.0'
 
@@ -42,6 +39,11 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'better_errors'
+end
+
+group :production do
+  #postgresql
+  gem 'pg', '~> 0.18'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
