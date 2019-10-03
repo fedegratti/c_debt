@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.soft_delete
-    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name) if current_user.id == @user.id
     redirect_to users_url, notice: t('was_successfully_destroyed', name: t('user'))
   end
 

@@ -50,14 +50,12 @@ end
 gem 'tzinfo-data'
 
 gem 'rails_12factor', group: :production
-gem 'omniauth-facebook'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sidekiq'
 gem 'whenever', :require => false
 gem 'whenever-test'
 gem 'rails-controller-testing'
 gem 'codecov', :require => false, :group => :test
-gem 'omniauth-twitter'
 gem 'activerecord-session_store'
 
 # Use ActiveModel has_secure_password
