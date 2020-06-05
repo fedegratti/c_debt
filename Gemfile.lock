@@ -184,7 +184,7 @@ GEM
       omniauth-oauth (~> 1.1)
       rack
     orm_adapter (0.5.0)
-    pg (0.18)
+    pg (0.18.0)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -288,7 +288,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
     whenever-test (1.0.1)
